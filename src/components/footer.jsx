@@ -155,11 +155,11 @@ const Footer = () => {
           gridTemplateColumns: isSmallScreen ? "1fr" : "repeat(6, 1fr)",
           justifyItems: isSmallScreen ? "left" : "center",
           alignItems: isSmallScreen ? "center" : "flex-start",
-          gap: isSmallScreen ? "10px" : "100px",
+          gap: isSmallScreen ? "10px" : "30px",
           height: "auto",
           width: "100%",
           justifyContent: isSmallScreen ? "left" : "center",
-          padding: isSmallScreen ? "10px" : "70px",
+          padding: isSmallScreen ? "10px" : "20px",
           backgroundColor: "#fff",
         }}
       >

@@ -15,15 +15,15 @@ const Header = () => {
         padding: "10px",
         alignItems: "center",
         height: "60px",
-        paddingRight: "40px",
-        paddingLeft: "40px",
+        paddingRight: "20px",
+        paddingLeft: "20px",
       }}
     >
       <div
         style={{
           display: "flex",
           alignItems: "center",
-          gap: "30px",
+          gap: "20px",
           cursor: "pointer",
         }}
       >
