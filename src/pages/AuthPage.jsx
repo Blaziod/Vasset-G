@@ -24,7 +24,7 @@ const AuthPage = () => {
         {/* Logo */}
         <div className="flex justify-center mb-4">
           <img
-            src="src/assets/Logo.png"
+            src="/assets/Logo.png"
             alt="Logo"
             className="h-[120px] w-[200px]"
           />
@@ -70,7 +70,7 @@ const AuthPage = () => {
             <button className="w-full flex items-center justify-center py-2 mb-4 border rounded-md bg-gray-100 text-[#0b5530] font-bold hover:bg-gray-200">
               <span className="mr-2">
                 <img
-                  src="src/assets/Google.png"
+                  src="/assets/Google.png"
                   alt="Google Logo"
                   className="h-5"
                 />
@@ -189,7 +189,7 @@ const AuthPage = () => {
             <button className="w-full flex items-center justify-center py-2 mb-4 border rounded-md bg-gray-100 text-[#0b5530] font-bold hover:bg-gray-200">
               <span className="mr-2">
                 <img
-                  src="src/assets/Google.png"
+                  src="/assets/Google.png"
                   alt="Google Logo"
                   className="h-5"
                 />

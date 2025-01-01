@@ -27,7 +27,7 @@ const Header = () => {
           cursor: "pointer",
         }}
       >
-        <img src="src/assets/Vasset.png" alt="Logo" />
+        <img src="/assets/Vasset.png" alt="Logo" />
         <h1 style={{ color: "#22242A", fontSize: "14px", fontWeight: "500" }}>
           Buy / Sell Crypto
         </h1>
