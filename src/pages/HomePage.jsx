@@ -52,7 +52,11 @@ const HomePage = () => {
   return (
     <div
       className="min-h-screen flex flex-col items-center justify-center"
-      style={{ backgroundColor: "#FFFFFF" }}
+      style={{
+        backgroundColor: "#FFFFFF",
+        maxWidth: "100vw",
+        minHeight: "100vh",
+      }}
     >
       <div
         style={{
@@ -136,7 +140,14 @@ const HomePage = () => {
             Continue with Google
           </button>
         </div>
-        <div className="flex justify-center content-center">
+        <div
+          className="flex justify-center content-center"
+          style={{
+            display: "flex",
+            justifyContent: "center",
+            alignSelf: "center",
+          }}
+        >
           <div
             style={{
               position: "absolute",
