@@ -130,7 +130,6 @@ const AuthPage = () => {
                 justifyContent: "center",
                 alignItems: "center",
                 padding: "0.5rem",
-                marginBottom: "1rem",
                 border: "1px solid #ccc",
                 borderRadius: "0.375rem",
                 backgroundColor: "#f3f3f3",
