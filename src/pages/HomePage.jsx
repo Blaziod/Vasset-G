@@ -5,8 +5,14 @@ import { CiWallet } from "react-icons/ci";
 import { BsGraphUp } from "react-icons/bs";
 import { SiTrustpilot } from "react-icons/si";
 import Footer from "../components/footer";
+import { useNavigate } from "react-router-dom";
 
 const HomePage = () => {
+  const navigate = useNavigate();
+
+  const handleClick = () => {
+    navigate("/auth");
+  };
   const Column = ({ children }) => {
     return (
       <div
@@ -142,6 +148,7 @@ const HomePage = () => {
             onMouseLeave={(e) =>
               (e.target.style.backgroundColor = "rgba(0, 122, 37, 0.4)")
             }
+            onClick={handleClick}
           >
             Login / Register
           </button>

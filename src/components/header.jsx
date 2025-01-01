@@ -1,6 +1,12 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 
 const Header = () => {
+  const navigate = useNavigate();
+
+  const handleClick = () => {
+    navigate("/auth");
+  };
   return (
     <div
       style={{
@@ -26,6 +32,7 @@ const Header = () => {
           gap: "20px",
           cursor: "pointer",
         }}
+        onClick={handleClick}
       >
         <img src="/assets/Vasset.png" alt="Logo" />
         <h1 style={{ color: "#22242A", fontSize: "14px", fontWeight: "500" }}>
@@ -44,7 +51,10 @@ const Header = () => {
           paddingRight: "40px",
         }}
       >
-        <h1 style={{ color: "#22242A", fontSize: "14px", fontWeight: "500" }}>
+        <h1
+          style={{ color: "#22242A", fontSize: "14px", fontWeight: "500" }}
+          onClick={handleClick}
+        >
           Login
         </h1>
         <button
@@ -62,6 +72,7 @@ const Header = () => {
           }}
           onMouseEnter={(e) => (e.target.style.backgroundColor = "#00591A")}
           onMouseLeave={(e) => (e.target.style.backgroundColor = "#007A25")}
+          onClick={handleClick}
         >
           Register
         </button>

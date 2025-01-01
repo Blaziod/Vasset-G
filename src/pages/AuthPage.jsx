@@ -19,84 +19,170 @@ const AuthPage = () => {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-[#F6F6F6]">
-      <div className="w-full max-w-md  p-6">
+    <div
+      style={{
+        minHeight: "100vh",
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+        backgroundColor: "#F6F6F6",
+        alignContent: "center",
+      }}
+    >
+      <div
+        style={{
+          width: "100%",
+          maxWidth: "28rem",
+          padding: "1.5rem",
+        }}
+      >
         {/* Logo */}
-        <div className="flex justify-center mb-4">
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "center",
+            marginBottom: "1rem",
+          }}
+        >
           <img
             src="/assets/Logo.png"
             alt="Logo"
-            className="h-[120px] w-[200px]"
+            style={{
+              height: "120px",
+              width: "200px",
+            }}
           />
         </div>
-
-        {/* Tab Buttons */}
         <div
-          className="flex justify-center mb-6 border "
           style={{
-            backgroundColor: "#DBDBDB",
-            color: "white",
-            borderRadius: "500px",
-            padding: "1px",
+            display: "flex",
+            flexDirection: "column",
+            justifyContent: "center",
+            alignItems: "center",
           }}
         >
           <div
-            className={`w-1/2 py-2 rounded-md flex justify-center items-center font-bold text-[15px]`}
             style={{
-              backgroundColor: activeTab === "signIn" ? "white" : "#DBDBDB",
-              color: activeTab === "signIn" ? "#0b5530" : "#F2F2F2",
-              borderRadius: "500px",
+              display: "flex",
+              justifyContent: "center",
+              marginBottom: "1.5rem",
+              border: "1px solid #ccc",
+              backgroundColor: "#DBDBDB",
+              color: "white",
+              borderRadius: "9999px",
+              padding: "1px",
+              width: "350px",
+              alignItems: "center",
             }}
-            onClick={() => setActiveTab("signIn")}
           >
-            Sign In
-          </div>
-          <div
-            className={`w-1/2 py-2 rounded-md flex justify-center items-center font-bold text-[15px]`}
-            style={{
-              backgroundColor: activeTab === "signUp" ? "white" : "#DBDBDB",
-              color: activeTab === "signUp" ? "#0b5530" : "#F2F2F2",
-              borderRadius: "500px",
-            }}
-            onClick={() => setActiveTab("signUp")}
-          >
-            Sign Up
+            <div
+              onClick={() => setActiveTab("signIn")}
+              style={{
+                width: "50%",
+                padding: "0.5rem 0",
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+                fontWeight: "bold",
+                fontSize: "0.9375rem",
+                backgroundColor: activeTab === "signIn" ? "white" : "#DBDBDB",
+                color: activeTab === "signIn" ? "#0b5530" : "#F2F2F2",
+                borderRadius: "9999px",
+                cursor: "pointer",
+              }}
+            >
+              Sign In
+            </div>
+            <div
+              onClick={() => setActiveTab("signUp")}
+              style={{
+                width: "50%",
+                padding: "0.5rem 0",
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+                fontWeight: "bold",
+                fontSize: "0.9375rem",
+                backgroundColor: activeTab === "signUp" ? "white" : "#DBDBDB",
+                color: activeTab === "signUp" ? "#0b5530" : "#F2F2F2",
+                borderRadius: "9999px",
+                cursor: "pointer",
+              }}
+            >
+              Sign Up
+            </div>
           </div>
         </div>
-
         {/* Sign In Form */}
         {activeTab === "signIn" && (
-          <div>
-            <button className="w-full flex items-center justify-center py-2 mb-4 border rounded-md bg-gray-100 text-[#0b5530] font-bold hover:bg-gray-200">
-              <span className="mr-2">
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "column",
+              justifyContent: "center",
+              alignItems: "center",
+            }}
+          >
+            <button
+              style={{
+                width: "350px",
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+                padding: "0.5rem",
+                marginBottom: "1rem",
+                border: "1px solid #ccc",
+                borderRadius: "0.375rem",
+                backgroundColor: "#f3f3f3",
+                color: "#0b5530",
+                fontWeight: "bold",
+                cursor: "pointer",
+              }}
+            >
+              <span
+                style={{
+                  marginRight: "0.5rem",
+                }}
+              >
                 <img
                   src="/assets/Google.png"
                   alt="Google Logo"
-                  className="h-5"
+                  style={{
+                    height: "1.25rem",
+                  }}
                 />
               </span>
               Continue with Google
             </button>
-            <p className="text-center text-[#0b5530] mb-4 font-bold">OR</p>
+            <p
+              style={{
+                textAlign: "center",
+                color: "#0b5530",
+                marginBottom: "1rem",
+                fontWeight: "bold",
+              }}
+            >
+              OR
+            </p>
             <input
               type="email"
               placeholder="Email Address"
               style={{
-                width: "100%",
-                padding: "0.5rem 2.5rem 0.5rem 0.75rem", // Padding for icon space
+                width: "330px",
+                padding: "0.5rem",
                 border: "1px solid #ccc",
-                borderRadius: "0.375rem", // 6px radius
+                borderRadius: "0.375rem",
                 fontSize: "1rem",
                 outline: "none",
-                boxShadow: "0 0 0 2px rgba(74, 222, 128, 0)", // Focus outline will appear
+                boxShadow: "0 0 0 2px rgba(74, 222, 128, 0)",
                 transition: "box-shadow 0.2s ease-in-out",
                 backgroundColor: "#DCDCDC",
               }}
               onFocus={(e) => {
-                e.target.style.boxShadow = "0 0 0 2px rgba(74, 222, 128, 1)"; // Green outline on focus
+                e.target.style.boxShadow = "0 0 0 2px rgba(74, 222, 128, 1)";
               }}
               onBlur={(e) => {
-                e.target.style.boxShadow = "0 0 0 2px rgba(74, 222, 128, 0)"; // Remove outline on blur
+                e.target.style.boxShadow = "0 0 0 2px rgba(74, 222, 128, 0)";
               }}
             />
             <div
@@ -112,21 +198,21 @@ const AuthPage = () => {
                 onChange={handlePasswordChange}
                 placeholder="Password"
                 style={{
-                  width: "100%",
-                  padding: "0.5rem 2.5rem 0.5rem 0.75rem", // Padding for icon space
+                  width: "330px",
+                  padding: "0.5rem",
                   border: "1px solid #ccc",
-                  borderRadius: "0.375rem", // 6px radius
+                  borderRadius: "0.375rem",
                   fontSize: "1rem",
                   outline: "none",
-                  boxShadow: "0 0 0 2px rgba(74, 222, 128, 0)", // Focus outline will appear
+                  boxShadow: "0 0 0 2px rgba(74, 222, 128, 0)",
                   transition: "box-shadow 0.2s ease-in-out",
                   backgroundColor: "#DCDCDC",
                 }}
                 onFocus={(e) => {
-                  e.target.style.boxShadow = "0 0 0 2px rgba(74, 222, 128, 1)"; // Green outline on focus
+                  e.target.style.boxShadow = "0 0 0 2px rgba(74, 222, 128, 1)";
                 }}
                 onBlur={(e) => {
-                  e.target.style.boxShadow = "0 0 0 2px rgba(74, 222, 128, 0)"; // Remove outline on blur
+                  e.target.style.boxShadow = "0 0 0 2px rgba(74, 222, 128, 0)";
                 }}
               />
               <button
@@ -135,8 +221,8 @@ const AuthPage = () => {
                 style={{
                   position: "absolute",
                   top: "50%",
-                  right: "0.75rem", // Position near the right edge
-                  transform: "translateY(-50%)", // Center vertically
+                  right: "0.5rem",
+                  transform: "translateY(-50%)",
                   background: "none",
                   border: "none",
                   cursor: "pointer",
@@ -165,18 +251,18 @@ const AuthPage = () => {
             </div>
             <button
               style={{
-                width: "100%",
-                padding: "0.5rem", // Top and bottom padding
-                backgroundColor: "#007A25", // Background color
-                color: "white", // Text color
-                borderRadius: "0.375rem", // Rounded corners
-                fontWeight: "bold", // Bold text
-                border: "none", // Remove default border
-                cursor: "pointer", // Change cursor to pointer on hover
-                transition: "background-color 0.2s ease-in-out", // Smooth hover effect
+                width: "350px",
+                padding: "0.5rem",
+                backgroundColor: "#007A25",
+                color: "white",
+                borderRadius: "0.375rem",
+                fontWeight: "bold",
+                border: "none",
+                cursor: "pointer",
+                transition: "background-color 0.2s ease-in-out",
               }}
-              onMouseEnter={(e) => (e.target.style.backgroundColor = "#00591A")} // Hover effect
-              onMouseLeave={(e) => (e.target.style.backgroundColor = "#007A25")} // Reset hover effect
+              onMouseEnter={(e) => (e.target.style.backgroundColor = "#00591A")}
+              onMouseLeave={(e) => (e.target.style.backgroundColor = "#007A25")}
             >
               Sign In
             </button>
@@ -185,24 +271,61 @@ const AuthPage = () => {
 
         {/* Sign Up Form */}
         {activeTab === "signUp" && (
-          <div>
-            <button className="w-full flex items-center justify-center py-2 mb-4 border rounded-md bg-gray-100 text-[#0b5530] font-bold hover:bg-gray-200">
-              <span className="mr-2">
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "column",
+              justifyContent: "center",
+              alignItems: "center",
+            }}
+          >
+            <button
+              style={{
+                width: "350px",
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+                padding: "0.5rem",
+                marginBottom: "1rem",
+                border: "1px solid #ccc",
+                borderRadius: "0.375rem",
+                backgroundColor: "#f3f3f3",
+                color: "#0b5530",
+                fontWeight: "bold",
+                cursor: "pointer",
+              }}
+            >
+              <span
+                style={{
+                  marginRight: "0.5rem",
+                }}
+              >
                 <img
                   src="/assets/Google.png"
                   alt="Google Logo"
-                  className="h-5"
+                  style={{
+                    height: "1.25rem",
+                  }}
                 />
               </span>
               Continue with Google
             </button>
-            <p className="text-center text-[#0b5530] mb-4 font-bold">OR</p>
+            <p
+              style={{
+                textAlign: "center",
+                color: "#0b5530",
+                marginBottom: "1rem",
+                fontWeight: "bold",
+              }}
+            >
+              OR
+            </p>
             <div
               style={{
-                position: "relative",
-                marginBottom: "1rem",
-                gap: "0.5rem",
                 display: "flex",
+                gap: "0.5rem",
+                marginBottom: "1rem",
+                width: "350px",
               }}
             >
               <input
@@ -210,20 +333,20 @@ const AuthPage = () => {
                 placeholder="First Name"
                 style={{
                   width: "50%",
-                  padding: "0.5rem 2.5rem 0.5rem 0.75rem", // Padding for icon space
+                  padding: "0.5rem",
                   border: "1px solid #ccc",
-                  borderRadius: "0.375rem", // 6px radius
+                  borderRadius: "0.375rem",
                   fontSize: "1rem",
                   outline: "none",
-                  boxShadow: "0 0 0 2px rgba(74, 222, 128, 0)", // Focus outline will appear
+                  boxShadow: "0 0 0 2px rgba(74, 222, 128, 0)",
                   transition: "box-shadow 0.2s ease-in-out",
                   backgroundColor: "#DCDCDC",
                 }}
                 onFocus={(e) => {
-                  e.target.style.boxShadow = "0 0 0 2px rgba(74, 222, 128, 1)"; // Green outline on focus
+                  e.target.style.boxShadow = "0 0 0 2px rgba(74, 222, 128, 1)";
                 }}
                 onBlur={(e) => {
-                  e.target.style.boxShadow = "0 0 0 2px rgba(74, 222, 128, 0)"; // Remove outline on blur
+                  e.target.style.boxShadow = "0 0 0 2px rgba(74, 222, 128, 0)";
                 }}
               />
               <input
@@ -231,20 +354,20 @@ const AuthPage = () => {
                 placeholder="Last Name"
                 style={{
                   width: "50%",
-                  padding: "0.5rem 2.5rem 0.5rem 0.75rem", // Padding for icon space
+                  padding: "0.5rem ",
                   border: "1px solid #ccc",
-                  borderRadius: "0.375rem", // 6px radius
+                  borderRadius: "0.375rem",
                   fontSize: "1rem",
                   outline: "none",
-                  boxShadow: "0 0 0 2px rgba(74, 222, 128, 0)", // Focus outline will appear
+                  boxShadow: "0 0 0 2px rgba(74, 222, 128, 0)",
                   transition: "box-shadow 0.2s ease-in-out",
                   backgroundColor: "#DCDCDC",
                 }}
                 onFocus={(e) => {
-                  e.target.style.boxShadow = "0 0 0 2px rgba(74, 222, 128, 1)"; // Green outline on focus
+                  e.target.style.boxShadow = "0 0 0 2px rgba(74, 222, 128, 1)";
                 }}
                 onBlur={(e) => {
-                  e.target.style.boxShadow = "0 0 0 2px rgba(74, 222, 128, 0)"; // Remove outline on blur
+                  e.target.style.boxShadow = "0 0 0 2px rgba(74, 222, 128, 0)";
                 }}
               />
             </div>
@@ -252,21 +375,21 @@ const AuthPage = () => {
               type="email"
               placeholder="Email Address"
               style={{
-                width: "100%",
-                padding: "0.5rem 2.5rem 0.5rem 0.75rem", // Padding for icon space
+                width: "330px",
+                padding: "0.5rem ",
                 border: "1px solid #ccc",
-                borderRadius: "0.375rem", // 6px radius
+                borderRadius: "0.375rem",
                 fontSize: "1rem",
                 outline: "none",
-                boxShadow: "0 0 0 2px rgba(74, 222, 128, 0)", // Focus outline will appear
+                boxShadow: "0 0 0 2px rgba(74, 222, 128, 0)",
                 transition: "box-shadow 0.2s ease-in-out",
                 backgroundColor: "#DCDCDC",
               }}
               onFocus={(e) => {
-                e.target.style.boxShadow = "0 0 0 2px rgba(74, 222, 128, 1)"; // Green outline on focus
+                e.target.style.boxShadow = "0 0 0 2px rgba(74, 222, 128, 1)";
               }}
               onBlur={(e) => {
-                e.target.style.boxShadow = "0 0 0 2px rgba(74, 222, 128, 0)"; // Remove outline on blur
+                e.target.style.boxShadow = "0 0 0 2px rgba(74, 222, 128, 0)";
               }}
             />
             <div
@@ -280,21 +403,21 @@ const AuthPage = () => {
                 type="phone"
                 placeholder="Phone Number"
                 style={{
-                  width: "100%",
-                  padding: "0.5rem 2.5rem 0.5rem 0.75rem", // Padding for icon space
+                  width: "330px",
+                  padding: "0.5rem",
                   border: "1px solid #ccc",
-                  borderRadius: "0.375rem", // 6px radius
+                  borderRadius: "0.375rem",
                   fontSize: "1rem",
                   outline: "none",
-                  boxShadow: "0 0 0 2px rgba(74, 222, 128, 0)", // Focus outline will appear
+                  boxShadow: "0 0 0 2px rgba(74, 222, 128, 0)",
                   transition: "box-shadow 0.2s ease-in-out",
                   backgroundColor: "#DCDCDC",
                 }}
                 onFocus={(e) => {
-                  e.target.style.boxShadow = "0 0 0 2px rgba(74, 222, 128, 1)"; // Green outline on focus
+                  e.target.style.boxShadow = "0 0 0 2px rgba(74, 222, 128, 1)";
                 }}
                 onBlur={(e) => {
-                  e.target.style.boxShadow = "0 0 0 2px rgba(74, 222, 128, 0)"; // Remove outline on blur
+                  e.target.style.boxShadow = "0 0 0 2px rgba(74, 222, 128, 0)";
                 }}
               />
             </div>
@@ -311,21 +434,21 @@ const AuthPage = () => {
                 onChange={handlePasswordChange}
                 placeholder="Password"
                 style={{
-                  width: "100%",
-                  padding: "0.5rem 2.5rem 0.5rem 0.75rem", // Padding for icon space
+                  width: "330px",
+                  padding: "0.5rem",
                   border: "1px solid #ccc",
-                  borderRadius: "0.375rem", // 6px radius
+                  borderRadius: "0.375rem",
                   fontSize: "1rem",
                   outline: "none",
-                  boxShadow: "0 0 0 2px rgba(74, 222, 128, 0)", // Focus outline will appear
+                  boxShadow: "0 0 0 2px rgba(74, 222, 128, 0)",
                   transition: "box-shadow 0.2s ease-in-out",
                   backgroundColor: "#DCDCDC",
                 }}
                 onFocus={(e) => {
-                  e.target.style.boxShadow = "0 0 0 2px rgba(74, 222, 128, 1)"; // Green outline on focus
+                  e.target.style.boxShadow = "0 0 0 2px rgba(74, 222, 128, 1)";
                 }}
                 onBlur={(e) => {
-                  e.target.style.boxShadow = "0 0 0 2px rgba(74, 222, 128, 0)"; // Remove outline on blur
+                  e.target.style.boxShadow = "0 0 0 2px rgba(74, 222, 128, 0)";
                 }}
               />
               <button
@@ -334,8 +457,8 @@ const AuthPage = () => {
                 style={{
                   position: "absolute",
                   top: "50%",
-                  right: "0.75rem", // Position near the right edge
-                  transform: "translateY(-50%)", // Center vertically
+                  right: "0.75rem",
+                  transform: "translateY(-50%)",
                   background: "none",
                   border: "none",
                   cursor: "pointer",
@@ -366,7 +489,6 @@ const AuthPage = () => {
               style={{
                 position: "relative",
                 marginBottom: "1rem",
-                marginTop: "1rem",
               }}
             >
               <input
@@ -375,21 +497,21 @@ const AuthPage = () => {
                 onChange={handleConfirmPasswordChange}
                 placeholder="Confirm Password"
                 style={{
-                  width: "100%",
-                  padding: "0.5rem 2.5rem 0.5rem 0.75rem", // Padding for icon space
+                  width: "330px",
+                  padding: "0.5rem ",
                   border: "1px solid #ccc",
-                  borderRadius: "0.375rem", // 6px radius
+                  borderRadius: "0.375rem",
                   fontSize: "1rem",
                   outline: "none",
-                  boxShadow: "0 0 0 2px rgba(74, 222, 128, 0)", // Focus outline will appear
+                  boxShadow: "0 0 0 2px rgba(74, 222, 128, 0)",
                   transition: "box-shadow 0.2s ease-in-out",
                   backgroundColor: "#DCDCDC",
                 }}
                 onFocus={(e) => {
-                  e.target.style.boxShadow = "0 0 0 2px rgba(74, 222, 128, 1)"; // Green outline on focus
+                  e.target.style.boxShadow = "0 0 0 2px rgba(74, 222, 128, 1)";
                 }}
                 onBlur={(e) => {
-                  e.target.style.boxShadow = "0 0 0 2px rgba(74, 222, 128, 0)"; // Remove outline on blur
+                  e.target.style.boxShadow = "0 0 0 2px rgba(74, 222, 128, 0)";
                 }}
               />
               <button
@@ -398,8 +520,8 @@ const AuthPage = () => {
                 style={{
                   position: "absolute",
                   top: "50%",
-                  right: "0.75rem", // Position near the right edge
-                  transform: "translateY(-50%)", // Center vertically
+                  right: "0.75rem",
+                  transform: "translateY(-50%)",
                   background: "none",
                   border: "none",
                   cursor: "pointer",
@@ -428,18 +550,18 @@ const AuthPage = () => {
             </div>
             <button
               style={{
-                width: "100%",
-                padding: "0.5rem", // Top and bottom padding
-                backgroundColor: "#007A25", // Background color
-                color: "white", // Text color
-                borderRadius: "0.375rem", // Rounded corners
-                fontWeight: "bold", // Bold text
-                border: "none", // Remove default border
-                cursor: "pointer", // Change cursor to pointer on hover
-                transition: "background-color 0.2s ease-in-out", // Smooth hover effect
+                width: "350px",
+                padding: "0.5rem",
+                backgroundColor: "#007A25",
+                color: "white",
+                borderRadius: "0.375rem",
+                fontWeight: "bold",
+                border: "none",
+                cursor: "pointer",
+                transition: "background-color 0.2s ease-in-out",
               }}
-              onMouseEnter={(e) => (e.target.style.backgroundColor = "#00591A")} // Hover effect
-              onMouseLeave={(e) => (e.target.style.backgroundColor = "#007A25")} // Reset hover effect
+              onMouseEnter={(e) => (e.target.style.backgroundColor = "#00591A")}
+              onMouseLeave={(e) => (e.target.style.backgroundColor = "#007A25")}
             >
               Sign Up
             </button>
