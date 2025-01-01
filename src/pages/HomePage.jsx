@@ -61,7 +61,7 @@ const HomePage = () => {
           height: "800px",
         }}
       >
-        <img src="/assets/863.png" />
+        <img src="/assets/863.png" style={{ width: "100vw" }} />
         <div
           style={{
             position: "absolute",
@@ -233,13 +233,22 @@ const HomePage = () => {
           </div>
         </div>
       </div>
-      <div className="flex flex-col items-center justify-center">
+      <div
+        className="flex flex-col items-center justify-center"
+        style={{
+          display: "flex",
+          flexDirection: "column",
+          justifyItems: "center",
+          alignItems: "center",
+        }}
+      >
         <h1
           style={{
             color: "#007A25",
             fontSize: "50px",
             fontWeight: "700px",
             paddingTop: "50px",
+            textAlign: "center",
           }}
         >
           Why Choose Us?
@@ -602,8 +611,23 @@ const HomePage = () => {
         </div>
       </div>
       <div style={{ paddingTop: "100px" }} />
-      <div className="flex flex-col items-center justify-center">
-        <p style={{ color: "#707A8A", fontSize: "14px", fontWeight: "400" }}>
+      <div
+        className="flex flex-col items-center justify-center"
+        style={{
+          display: "flex",
+          flexDirection: "column",
+          justifyItems: "center",
+          alignItems: "center",
+        }}
+      >
+        <p
+          style={{
+            color: "#707A8A",
+            fontSize: "14px",
+            fontWeight: "400",
+            textAlign: "center",
+          }}
+        >
           Testimonials
         </p>
         <h1
