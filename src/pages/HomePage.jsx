@@ -61,7 +61,7 @@ const HomePage = () => {
           height: "800px",
         }}
       >
-        <img src="src/assets/863.png" />
+        <img src="/assets/863.png" />
         <div
           style={{
             position: "absolute",
@@ -128,7 +128,7 @@ const HomePage = () => {
           >
             <span className="mr-2">
               <img
-                src="src/assets/GoogleM.png"
+                src="/assets/GoogleM.png"
                 alt="Google Logo"
                 className="h-5"
               />
@@ -430,7 +430,7 @@ const HomePage = () => {
             maxWidth: "600px",
           }}
         >
-          <img src="src/assets/1.png" />
+          <img src="/assets/1.png" />
         </div>
 
         <div
@@ -802,7 +802,7 @@ const HomePage = () => {
           }}
         >
           <div>
-            <img src="src/assets/2.png" />
+            <img src="/assets/2.png" />
           </div>
         </div>
       </div>

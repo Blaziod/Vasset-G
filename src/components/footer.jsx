@@ -165,7 +165,7 @@ const Footer = () => {
       >
         <div>
           <div className="flex flex-col" style={{ gap: "10px" }}>
-            <img src="src/assets/Logo.png" alt="Logo" />
+            <img src="/assets/Logo.png" alt="Logo" />
             <FooterText fontSize="14px" color="#707A8A" fontWeight="400">
               © 2014–2024
             </FooterText>
