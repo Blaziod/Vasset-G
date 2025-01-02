@@ -1,0 +1,9 @@
+@media (max-width: 768px) {
+  .hamburger {
+    display: block;
+  }
+
+  .menu-items {
+    display: none; /* Hidden by default, toggled via state */
+  }
+}

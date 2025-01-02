@@ -113,7 +113,7 @@ const HomePage = () => {
             type="email"
             placeholder="Enter your email"
             style={{
-              width: "400px",
+              width: isSmallScreen ? "97%" : "400px",
               padding: "10px", // Padding for icon space
               border: "1px solid #ccc",
               borderRadius: "0.375rem", // 6px radius
@@ -132,7 +132,7 @@ const HomePage = () => {
           />
           <button
             style={{
-              width: "400px",
+              width: isSmallScreen ? "100%" : "420px",
               padding: "10px",
               backgroundColor: "rgba(0, 122, 37, 0.4)",
               color: "white",
@@ -164,7 +164,7 @@ const HomePage = () => {
           </p>
           <button
             style={{
-              width: "400px",
+              width: isSmallScreen ? "100%" : "420px",
               padding: "0.5rem",
               backgroundColor: "#fff",
               color: "#22242A",
@@ -207,7 +207,7 @@ const HomePage = () => {
               position: "absolute",
               top: "80%",
               display: "flex",
-              gap: "60px",
+              gap: "30px",
               height: "auto",
               width: "auto",
               backgroundColor: "#DAFCB4",
@@ -226,16 +226,17 @@ const HomePage = () => {
             >
               <h1
                 style={{
-                  fontSize: "40px",
+                  fontSize: "30px",
                   fontWeight: "600",
                   color: "#22242A",
+                  margin: 0,
                 }}
               >
                 10
               </h1>
               <h1
                 style={{
-                  fontSize: "18px",
+                  fontSize: "15px",
                   fontWeight: "400",
                   color: "#22242A",
                 }}
@@ -252,16 +253,17 @@ const HomePage = () => {
             >
               <h1
                 style={{
-                  fontSize: "40px",
+                  fontSize: "30px",
                   fontWeight: "600",
                   color: "#22242A",
+                  margin: 0,
                 }}
               >
                 15+
               </h1>
               <h1
                 style={{
-                  fontSize: "18px",
+                  fontSize: "15px",
                   fontWeight: "400",
                   color: "#22242A",
                 }}
@@ -278,16 +280,17 @@ const HomePage = () => {
             >
               <h1
                 style={{
-                  fontSize: "40px",
+                  fontSize: "30px",
                   fontWeight: "600",
                   color: "#22242A",
+                  margin: 0,
                 }}
               >
                 500+
               </h1>
               <h1
                 style={{
-                  fontSize: "18px",
+                  fontSize: "15px",
                   fontWeight: "400",
                   color: "#22242A",
                 }}
