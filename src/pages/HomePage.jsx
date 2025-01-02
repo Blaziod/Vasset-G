@@ -307,24 +307,34 @@ const HomePage = () => {
         <div
           style={{
             backgroundColor: "#6ECC0208",
-            // height: "auto",
             width: "100%",
             maxWidth: "100vw",
             padding: "0 20px",
+            boxSizing: "border-box", // Ensure padding doesn't affect width
             justifyContent: "center",
             alignItems: "center",
             display: "flex",
             flexDirection: "column",
+            gap: "10px",
           }}
         >
-          <img src="/assets/3.png" />
+          <img
+            src="/assets/3.png"
+            alt="Safe & Fastest Way"
+            style={{
+              maxWidth: "100%", // Ensure image doesn't exceed screen width
+              height: "auto", // Maintain aspect ratio
+              objectFit: "contain", // Ensure image fits within bounds
+            }}
+          />
           <p
             style={{
               color: "#007A25",
               fontSize: "40px",
               fontWeight: "600",
               margin: "0", // Remove any default margin
-              lineHeight: "1.2", // Adjust line height for more compact text
+              lineHeight: "1.2", // Adjust line height for compact text
+              textAlign: "center", // Center-align text for better mobile view
             }}
           >
             Safe & fastest way to Manage your Assets
@@ -335,16 +345,18 @@ const HomePage = () => {
               fontSize: "14px",
               fontWeight: "400",
               margin: "0", // Remove any default margin
-              lineHeight: "1.5", // Adjust line height for more compact text
+              lineHeight: "1.5", // Adjust line height for compact text
+              textAlign: "center", // Center-align text for better readability
             }}
           >
-            With easy to use interface and fast transactions!
+            With easy-to-use interface and fast transactions!
           </p>
           <input
             type="email"
             placeholder="Enter your email"
             style={{
-              width: isSmallScreen ? "97%" : "400px",
+              width: "95%",
+              maxWidth: "400px", // Restrict maximum width for larger screens
               padding: "10px", // Padding for icon space
               border: "1px solid #ccc",
               borderRadius: "0.375rem", // 6px radius
@@ -363,7 +375,8 @@ const HomePage = () => {
           />
           <button
             style={{
-              width: isSmallScreen ? "100%" : "420px",
+              width: "100%",
+              maxWidth: "420px", // Restrict maximum width
               padding: "10px",
               backgroundColor: "rgba(0, 122, 37, 0.4)",
               color: "white",
@@ -388,14 +401,15 @@ const HomePage = () => {
               textAlign: "center",
               color: "#0b5530",
               fontWeight: "bold",
-              margin: "10px 0", // Small margin to ensure spacing is consistent
+              margin: "10px 0", // Small margin for consistent spacing
             }}
           >
             OR
           </p>
           <button
             style={{
-              width: isSmallScreen ? "100%" : "420px",
+              width: "100%",
+              maxWidth: "420px", // Restrict maximum width
               padding: "0.5rem",
               backgroundColor: "#fff",
               color: "#22242A",
@@ -414,17 +428,19 @@ const HomePage = () => {
             onMouseEnter={(e) => (e.target.style.backgroundColor = "#1976D2")}
             onMouseLeave={(e) => (e.target.style.backgroundColor = "#fff")}
           >
-            <span className="mr-2">
-              <img
-                src="/assets/GoogleM.png"
-                alt="Google Logo"
-                className="h-5"
-              />
-            </span>
+            <img
+              src="/assets/GoogleM.png"
+              alt="Google Logo"
+              style={{
+                height: "20px", // Ensure the logo is properly sized
+                width: "auto", // Maintain aspect ratio
+              }}
+            />
             Continue with Google
-          </button>{" "}
+          </button>
         </div>
       )}
+
       <div
         className="flex flex-col items-center justify-center"
         style={{
