@@ -323,7 +323,8 @@ const HomePage = () => {
               alt="Safe & Fastest Way"
               style={{
                 maxWidth: "100%", // Ensure image doesn't exceed screen width
-                height: "auto", // Maintain aspect ratio
+                height: "auto",
+                paddingTop: "40px", // Maintain aspect ratio
                 // objectFit: "contain", // Ensure image fits within bounds
               }}
             />
