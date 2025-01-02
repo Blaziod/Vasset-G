@@ -50,7 +50,7 @@ const Header = () => {
             justifyContent: "space-between",
             cursor: "pointer",
             width: "100%",
-            paddingRight: "30px",
+            padding: "10px",
             position: "relative",
             maxWidth: "100vw",
             boxSizing: "border-box",
