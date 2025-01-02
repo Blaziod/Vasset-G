@@ -5,6 +5,7 @@ import AuthPage from "./pages/AuthPage";
 import VerifyPage from "./pages/VerifyPage";
 import "./App.css";
 import Layout from "./components/layout";
+import Dashboard from "./pages/Dashboard";
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
           <Route path="/" element={<HomePage />} />
           <Route path="/auth" element={<AuthPage />} />
           <Route path="/verify" element={<VerifyPage />} />
+          <Route path="/dashboard" element={<Dashboard />} />
         </Routes>
       </Layout>
     </Router>

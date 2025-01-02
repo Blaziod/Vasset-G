@@ -97,7 +97,7 @@ const Header = () => {
                   fontSize: "14px",
                   fontWeight: "500",
                 }}
-                onClick={() => handleClick("/auth")}
+                onClick={() => handleClick("/dashboard")}
               >
                 Buy / Sell Crypto
               </h1>
@@ -107,7 +107,7 @@ const Header = () => {
                   fontSize: "14px",
                   fontWeight: "500",
                 }}
-                onClick={() => handleClick("/auth")}
+                onClick={() => handleClick("/dashboard")}
               >
                 Swap
               </h1>
@@ -164,11 +164,13 @@ const Header = () => {
             <img src="/assets/Vasset.png" alt="Logo" />
             <h1
               style={{ color: "#22242A", fontSize: "14px", fontWeight: "500" }}
+              onClick={() => handleClick("/dashboard")}
             >
               Buy / Sell Crypto
             </h1>
             <h1
               style={{ color: "#22242A", fontSize: "14px", fontWeight: "500" }}
+              onClick={() => handleClick("/dashboard")}
             >
               Swap
             </h1>
