@@ -304,141 +304,249 @@ const HomePage = () => {
         </div>
       )}
       {isSmallScreen && (
-        <div
-          style={{
-            backgroundColor: "#6ECC0208",
-            width: "100%",
-            maxWidth: "100vw",
-            padding: "0 20px",
-            boxSizing: "border-box", // Ensure padding doesn't affect width
-            justifyContent: "center",
-            alignItems: "center",
-            display: "flex",
-            flexDirection: "column",
-            gap: "10px",
-          }}
-        >
-          <img
-            src="/assets/3.png"
-            alt="Safe & Fastest Way"
+        <>
+          <div
             style={{
-              maxWidth: "100%", // Ensure image doesn't exceed screen width
-              height: "auto", // Maintain aspect ratio
-              objectFit: "contain", // Ensure image fits within bounds
-            }}
-          />
-          <p
-            style={{
-              color: "#007A25",
-              fontSize: "40px",
-              fontWeight: "600",
-              margin: "0", // Remove any default margin
-              lineHeight: "1.2", // Adjust line height for compact text
-              textAlign: "center", // Center-align text for better mobile view
-            }}
-          >
-            Safe & fastest way to Manage your Assets
-          </p>
-          <p
-            style={{
-              color: "#707A8A",
-              fontSize: "14px",
-              fontWeight: "400",
-              margin: "0", // Remove any default margin
-              lineHeight: "1.5", // Adjust line height for compact text
-              textAlign: "center", // Center-align text for better readability
-            }}
-          >
-            With easy-to-use interface and fast transactions!
-          </p>
-          <input
-            type="email"
-            placeholder="Enter your email"
-            style={{
-              width: "95%",
-              maxWidth: "400px", // Restrict maximum width for larger screens
-              padding: "10px", // Padding for icon space
-              border: "1px solid #ccc",
-              borderRadius: "0.375rem", // 6px radius
-              outline: "none",
-              boxShadow: "0 0 0 2px rgba(74, 222, 128, 0)", // Focus outline will appear
-              transition: "box-shadow 0.2s ease-in-out",
-              backgroundColor: "white",
-              margin: "0", // Ensure no margin
-            }}
-            onFocus={(e) => {
-              e.target.style.boxShadow = "0 0 0 2px rgba(74, 222, 128, 1)"; // Green outline on focus
-            }}
-            onBlur={(e) => {
-              e.target.style.boxShadow = "0 0 0 2px rgba(74, 222, 128, 0)"; // Remove outline on blur
-            }}
-          />
-          <button
-            style={{
+              backgroundColor: "#6ECC0208",
               width: "100%",
-              maxWidth: "420px", // Restrict maximum width
-              padding: "10px",
-              backgroundColor: "rgba(0, 122, 37, 0.4)",
-              color: "white",
-              borderRadius: "0.375rem",
-              fontWeight: "500",
-              border: "none",
-              cursor: "pointer",
-              fontSize: "16px",
-              transition: "background-color 0.2s ease-in-out",
-              margin: "0", // Remove margin
-            }}
-            onMouseEnter={(e) => (e.target.style.backgroundColor = "#00591A")}
-            onMouseLeave={(e) =>
-              (e.target.style.backgroundColor = "rgba(0, 122, 37, 0.4)")
-            }
-            onClick={handleClick}
-          >
-            Login / Register
-          </button>
-          <p
-            style={{
-              textAlign: "center",
-              color: "#0b5530",
-              fontWeight: "bold",
-              margin: "10px 0", // Small margin for consistent spacing
-            }}
-          >
-            OR
-          </p>
-          <button
-            style={{
-              width: "100%",
-              maxWidth: "420px", // Restrict maximum width
-              padding: "0.5rem",
-              backgroundColor: "#fff",
-              color: "#22242A",
-              borderRadius: "0.375rem",
-              fontWeight: "500",
-              cursor: "pointer",
-              fontSize: "16px",
-              transition: "background-color 0.2s ease-in-out",
-              border: "1px solid #CBD0D6",
+              maxWidth: "100vw",
+              boxSizing: "border-box",
+              justifyContent: "center",
               alignItems: "center",
               display: "flex",
+              flexDirection: "column",
               gap: "10px",
-              justifyContent: "center",
-              margin: "0", // Remove margin
             }}
-            onMouseEnter={(e) => (e.target.style.backgroundColor = "#1976D2")}
-            onMouseLeave={(e) => (e.target.style.backgroundColor = "#fff")}
           >
             <img
-              src="/assets/GoogleM.png"
-              alt="Google Logo"
+              src="/assets/3.png"
+              alt="Safe & Fastest Way"
               style={{
-                height: "20px", // Ensure the logo is properly sized
-                width: "auto", // Maintain aspect ratio
+                maxWidth: "100%", // Ensure image doesn't exceed screen width
+                height: "auto", // Maintain aspect ratio
+                // objectFit: "contain", // Ensure image fits within bounds
               }}
             />
-            Continue with Google
-          </button>
-        </div>
+            <p
+              style={{
+                color: "#22242A",
+                fontSize: "30px",
+                fontWeight: "600",
+                margin: "0", // Remove any default margin
+                lineHeight: "1.2", // Adjust line height for compact text
+                textAlign: "center", // Center-align text for better mobile view
+              }}
+            >
+              Safe & fastest way to Manage your Assets
+            </p>
+            <p
+              style={{
+                color: "#707A8A",
+                fontSize: "14px",
+                fontWeight: "400",
+                margin: "0", // Remove any default margin
+                lineHeight: "1.5", // Adjust line height for compact text
+                textAlign: "center", // Center-align text for better readability
+              }}
+            >
+              With easy-to-use interface and fast transactions!
+            </p>
+            <input
+              type="email"
+              placeholder="Enter your email"
+              style={{
+                width: "94%",
+                maxWidth: "400px", // Restrict maximum width for larger screens
+                padding: "10px", // Padding for icon space
+                border: "1px solid #ccc",
+                borderRadius: "0.375rem", // 6px radius
+                outline: "none",
+                boxShadow: "0 0 0 2px rgba(74, 222, 128, 0)", // Focus outline will appear
+                transition: "box-shadow 0.2s ease-in-out",
+                backgroundColor: "white",
+                margin: "0", // Ensure no margin
+              }}
+              onFocus={(e) => {
+                e.target.style.boxShadow = "0 0 0 2px rgba(74, 222, 128, 1)"; // Green outline on focus
+              }}
+              onBlur={(e) => {
+                e.target.style.boxShadow = "0 0 0 2px rgba(74, 222, 128, 0)"; // Remove outline on blur
+              }}
+            />
+            <button
+              style={{
+                width: "100%",
+                maxWidth: "420px", // Restrict maximum width
+                padding: "10px",
+                backgroundColor: "rgba(0, 122, 37, 0.4)",
+                color: "white",
+                borderRadius: "0.375rem",
+                fontWeight: "500",
+                border: "none",
+                cursor: "pointer",
+                fontSize: "16px",
+                transition: "background-color 0.2s ease-in-out",
+                margin: "0", // Remove margin
+              }}
+              onMouseEnter={(e) => (e.target.style.backgroundColor = "#00591A")}
+              onMouseLeave={(e) =>
+                (e.target.style.backgroundColor = "rgba(0, 122, 37, 0.4)")
+              }
+              onClick={handleClick}
+            >
+              Login / Register
+            </button>
+            <p
+              style={{
+                textAlign: "center",
+                color: "#0b5530",
+                fontWeight: "bold",
+                margin: "10px 0", // Small margin for consistent spacing
+              }}
+            >
+              OR
+            </p>
+            <button
+              style={{
+                width: "100%",
+                maxWidth: "420px", // Restrict maximum width
+                padding: "0.5rem",
+                backgroundColor: "#fff",
+                color: "#22242A",
+                borderRadius: "0.375rem",
+                fontWeight: "500",
+                cursor: "pointer",
+                fontSize: "16px",
+                transition: "background-color 0.2s ease-in-out",
+                border: "1px solid #CBD0D6",
+                alignItems: "center",
+                display: "flex",
+                gap: "10px",
+                justifyContent: "center",
+                margin: "0", // Remove margin
+              }}
+              onMouseEnter={(e) => (e.target.style.backgroundColor = "#1976D2")}
+              onMouseLeave={(e) => (e.target.style.backgroundColor = "#fff")}
+            >
+              <img
+                src="/assets/GoogleM.png"
+                alt="Google Logo"
+                style={{
+                  height: "20px", // Ensure the logo is properly sized
+                  width: "auto", // Maintain aspect ratio
+                }}
+              />
+              Continue with Google
+            </button>
+          </div>
+          <div style={{ paddingTop: "20px" }}>
+            <div
+              style={{
+                backgroundColor: "#EFFFDC",
+                display: "flex",
+                justifyContent: "space-between",
+                gap: "5px",
+              }}
+            >
+              <div
+                style={{
+                  backgroundColor: "#EFFFDC",
+                  display: "flex",
+                  justifyContent: "space-between",
+                  gap: "5px",
+                  width: "100%",
+                  padding: "10px",
+                  maxWidth: "100vw",
+                  boxSizing: "border-box",
+                  alignItems: "center",
+                }}
+              >
+                {" "}
+                <div
+                  style={{
+                    justifyContent: "center",
+                    textAlign: "center",
+                    alignItems: "center",
+                  }}
+                >
+                  <h1
+                    style={{
+                      fontSize: "30px",
+                      fontWeight: "600",
+                      color: "#22242A",
+                      margin: 0,
+                    }}
+                  >
+                    10
+                  </h1>
+                  <h1
+                    style={{
+                      fontSize: "15px",
+                      fontWeight: "400",
+                      color: "#22242A",
+                    }}
+                  >
+                    Supported currencies
+                  </h1>
+                </div>
+                <div
+                  style={{
+                    justifyContent: "center",
+                    textAlign: "center",
+                    alignItems: "center",
+                  }}
+                >
+                  <h1
+                    style={{
+                      fontSize: "30px",
+                      fontWeight: "600",
+                      color: "#22242A",
+                      margin: 0,
+                    }}
+                  >
+                    15+
+                  </h1>
+                  <h1
+                    style={{
+                      fontSize: "15px",
+                      fontWeight: "400",
+                      color: "#22242A",
+                    }}
+                  >
+                    Features
+                  </h1>
+                </div>{" "}
+                <div
+                  style={{
+                    justifyContent: "center",
+                    textAlign: "center",
+                    alignItems: "center",
+                  }}
+                >
+                  <h1
+                    style={{
+                      fontSize: "30px",
+                      fontWeight: "600",
+                      color: "#22242A",
+                      margin: 0,
+                    }}
+                  >
+                    500+
+                  </h1>
+                  <h1
+                    style={{
+                      fontSize: "15px",
+                      fontWeight: "400",
+                      color: "#22242A",
+                    }}
+                  >
+                    Supported cryptocurrency
+                  </h1>
+                </div>
+              </div>
+            </div>
+          </div>
+        </>
       )}
 
       <div
