@@ -985,7 +985,7 @@ const HomePage = () => {
           flexDirection: "column",
           justifyItems: "center",
           alignItems: "center",
-          paddingTop: "200px",
+          paddingTop: "100px",
         }}
       >
         <p
