@@ -886,22 +886,22 @@ const HomePage = () => {
           gap: "10px", // Small gap between columns
 
           height: "auto",
-          width: "auto",
+          width: isSmallScreen ? "90%" : "auto",
           justifyContent: "center",
-          padding: "70px",
+          padding: isSmallScreen ? "10px" : "70px",
           backgroundColor: "#F2F5EF",
         }}
       >
         <div
           style={{
-            padding: "15px",
+            padding: isSmallScreen ? "5px" : "10px",
             alignItems: "flex-start",
             display: "inline-flex",
             flexDirection: "column",
             justifyContent: "center",
 
             height: "auto",
-            width: "auto",
+            width: isSmallScreen ? "90%" : "auto",
             maxWidth: "600px",
           }}
         >
@@ -911,9 +911,10 @@ const HomePage = () => {
           <h1
             style={{
               color: "#22242A",
-              fontSize: "35px",
+              fontSize: isSmallScreen ? "25px" : "35px",
               fontWeight: "600",
               paddingBottom: "17px",
+              margin: 0,
             }}
           >
             A wide range of options for managing your Assets.
@@ -924,6 +925,7 @@ const HomePage = () => {
               fontSize: "18px",
               fontWeight: "400",
               textAlign: "justify",
+              margin: 0,
             }}
           >
             Seamlessly buy and sell cryptocurrency through bank accounts, credit
@@ -942,7 +944,10 @@ const HomePage = () => {
           }}
         >
           <div>
-            <img src="/assets/2.png" height={400} />
+            <img
+              src="/assets/2.png"
+              height={isSmallScreen ? "300px" : "400px"}
+            />
           </div>
         </div>
       </div>

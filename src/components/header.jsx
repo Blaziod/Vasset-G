@@ -44,7 +44,8 @@ const Header = () => {
             alignItems: "center",
             justifyContent: "space-between",
             cursor: "pointer",
-            width: "100%", // Add padding for spacing from screen edges
+            width: "100%",
+            padding: "0 20px",
           }}
         >
           {/* Logo on the left */}
