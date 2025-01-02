@@ -67,26 +67,257 @@ const HomePage = () => {
         flexDirection: "column",
       }}
     >
-      <div
-        style={{
-          position: "relative",
-          backgroundColor: "#6ECC0208",
-          height: "800px",
-        }}
-      >
-        <img src="/assets/863.png" style={{ width: "90%" }} />
+      {!isSmallScreen && (
         <div
           style={{
-            position: "absolute",
-            top: "40%",
-            left: "18%",
-            transform: "translateY(-50%)",
-            display: "flex",
-            flexDirection: "column",
-            width: "35%",
-            gap: "10px",
+            position: "relative",
+            backgroundColor: "#6ECC0208",
+            height: "800px",
           }}
         >
+          <img src="/assets/863.png" style={{ width: "90%" }} />
+          <div
+            style={{
+              position: "absolute",
+              top: "40%",
+              left: "18%",
+              transform: "translateY(-50%)",
+              display: "flex",
+              flexDirection: "column",
+              width: "35%",
+              gap: "10px",
+            }}
+          >
+            <p
+              style={{
+                color: "#007A25",
+                fontSize: "40px",
+                fontWeight: "600",
+                margin: "0", // Remove any default margin
+                lineHeight: "1.2", // Adjust line height for more compact text
+              }}
+            >
+              Safe & fastest way to Manage your Assets
+            </p>
+            <p
+              style={{
+                color: "#707A8A",
+                fontSize: "14px",
+                fontWeight: "400",
+                margin: "0", // Remove any default margin
+                lineHeight: "1.5", // Adjust line height for more compact text
+              }}
+            >
+              With easy to use interface and fast transactions!
+            </p>
+            <input
+              type="email"
+              placeholder="Enter your email"
+              style={{
+                width: isSmallScreen ? "97%" : "400px",
+                padding: "10px", // Padding for icon space
+                border: "1px solid #ccc",
+                borderRadius: "0.375rem", // 6px radius
+                outline: "none",
+                boxShadow: "0 0 0 2px rgba(74, 222, 128, 0)", // Focus outline will appear
+                transition: "box-shadow 0.2s ease-in-out",
+                backgroundColor: "white",
+                margin: "0", // Ensure no margin
+              }}
+              onFocus={(e) => {
+                e.target.style.boxShadow = "0 0 0 2px rgba(74, 222, 128, 1)"; // Green outline on focus
+              }}
+              onBlur={(e) => {
+                e.target.style.boxShadow = "0 0 0 2px rgba(74, 222, 128, 0)"; // Remove outline on blur
+              }}
+            />
+            <button
+              style={{
+                width: isSmallScreen ? "100%" : "420px",
+                padding: "10px",
+                backgroundColor: "rgba(0, 122, 37, 0.4)",
+                color: "white",
+                borderRadius: "0.375rem",
+                fontWeight: "500",
+                border: "none",
+                cursor: "pointer",
+                fontSize: "16px",
+                transition: "background-color 0.2s ease-in-out",
+                margin: "0", // Remove margin
+              }}
+              onMouseEnter={(e) => (e.target.style.backgroundColor = "#00591A")}
+              onMouseLeave={(e) =>
+                (e.target.style.backgroundColor = "rgba(0, 122, 37, 0.4)")
+              }
+              onClick={handleClick}
+            >
+              Login / Register
+            </button>
+            <p
+              style={{
+                textAlign: "center",
+                color: "#0b5530",
+                fontWeight: "bold",
+                margin: "10px 0", // Small margin to ensure spacing is consistent
+              }}
+            >
+              OR
+            </p>
+            <button
+              style={{
+                width: isSmallScreen ? "100%" : "420px",
+                padding: "0.5rem",
+                backgroundColor: "#fff",
+                color: "#22242A",
+                borderRadius: "0.375rem",
+                fontWeight: "500",
+                cursor: "pointer",
+                fontSize: "16px",
+                transition: "background-color 0.2s ease-in-out",
+                border: "1px solid #CBD0D6",
+                alignItems: "center",
+                display: "flex",
+                gap: "10px",
+                justifyContent: "center",
+                margin: "0", // Remove margin
+              }}
+              onMouseEnter={(e) => (e.target.style.backgroundColor = "#1976D2")}
+              onMouseLeave={(e) => (e.target.style.backgroundColor = "#fff")}
+            >
+              <span className="mr-2">
+                <img
+                  src="/assets/GoogleM.png"
+                  alt="Google Logo"
+                  className="h-5"
+                />
+              </span>
+              Continue with Google
+            </button>
+          </div>
+
+          <div
+            className="flex justify-center content-center"
+            style={{
+              display: "flex",
+              justifyContent: "center",
+              alignSelf: "center",
+            }}
+          >
+            <div
+              style={{
+                position: "absolute",
+                top: "80%",
+                display: "flex",
+                gap: "30px",
+                height: "auto",
+                width: "auto",
+                backgroundColor: "#DAFCB4",
+                borderRadius: "16px",
+                padding: "10px",
+                alignSelf: "center",
+                justifyContent: "space-between",
+              }}
+            >
+              <div
+                style={{
+                  justifyContent: "center",
+                  textAlign: "center",
+                  alignItems: "center",
+                }}
+              >
+                <h1
+                  style={{
+                    fontSize: "30px",
+                    fontWeight: "600",
+                    color: "#22242A",
+                    margin: 0,
+                  }}
+                >
+                  10
+                </h1>
+                <h1
+                  style={{
+                    fontSize: "15px",
+                    fontWeight: "400",
+                    color: "#22242A",
+                  }}
+                >
+                  Supported currencies
+                </h1>
+              </div>
+              <div
+                style={{
+                  justifyContent: "center",
+                  textAlign: "center",
+                  alignItems: "center",
+                }}
+              >
+                <h1
+                  style={{
+                    fontSize: "30px",
+                    fontWeight: "600",
+                    color: "#22242A",
+                    margin: 0,
+                  }}
+                >
+                  15+
+                </h1>
+                <h1
+                  style={{
+                    fontSize: "15px",
+                    fontWeight: "400",
+                    color: "#22242A",
+                  }}
+                >
+                  Features
+                </h1>
+              </div>{" "}
+              <div
+                style={{
+                  justifyContent: "center",
+                  textAlign: "center",
+                  alignItems: "center",
+                }}
+              >
+                <h1
+                  style={{
+                    fontSize: "30px",
+                    fontWeight: "600",
+                    color: "#22242A",
+                    margin: 0,
+                  }}
+                >
+                  500+
+                </h1>
+                <h1
+                  style={{
+                    fontSize: "15px",
+                    fontWeight: "400",
+                    color: "#22242A",
+                  }}
+                >
+                  Supported cryptocurrency
+                </h1>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
+      {isSmallScreen && (
+        <div
+          style={{
+            backgroundColor: "#6ECC0208",
+            // height: "auto",
+            width: "100%",
+            maxWidth: "100vw",
+            padding: "0 20px",
+            justifyContent: "center",
+            alignItems: "center",
+            display: "flex",
+            flexDirection: "column",
+          }}
+        >
+          <img src="/assets/3.png" />
           <p
             style={{
               color: "#007A25",
@@ -191,116 +422,9 @@ const HomePage = () => {
               />
             </span>
             Continue with Google
-          </button>
+          </button>{" "}
         </div>
-
-        <div
-          className="flex justify-center content-center"
-          style={{
-            display: "flex",
-            justifyContent: "center",
-            alignSelf: "center",
-          }}
-        >
-          <div
-            style={{
-              position: "absolute",
-              top: "80%",
-              display: "flex",
-              gap: "30px",
-              height: "auto",
-              width: "auto",
-              backgroundColor: "#DAFCB4",
-              borderRadius: "16px",
-              padding: "10px",
-              alignSelf: "center",
-              justifyContent: "space-between",
-            }}
-          >
-            <div
-              style={{
-                justifyContent: "center",
-                textAlign: "center",
-                alignItems: "center",
-              }}
-            >
-              <h1
-                style={{
-                  fontSize: "30px",
-                  fontWeight: "600",
-                  color: "#22242A",
-                  margin: 0,
-                }}
-              >
-                10
-              </h1>
-              <h1
-                style={{
-                  fontSize: "15px",
-                  fontWeight: "400",
-                  color: "#22242A",
-                }}
-              >
-                Supported currencies
-              </h1>
-            </div>
-            <div
-              style={{
-                justifyContent: "center",
-                textAlign: "center",
-                alignItems: "center",
-              }}
-            >
-              <h1
-                style={{
-                  fontSize: "30px",
-                  fontWeight: "600",
-                  color: "#22242A",
-                  margin: 0,
-                }}
-              >
-                15+
-              </h1>
-              <h1
-                style={{
-                  fontSize: "15px",
-                  fontWeight: "400",
-                  color: "#22242A",
-                }}
-              >
-                Features
-              </h1>
-            </div>{" "}
-            <div
-              style={{
-                justifyContent: "center",
-                textAlign: "center",
-                alignItems: "center",
-              }}
-            >
-              <h1
-                style={{
-                  fontSize: "30px",
-                  fontWeight: "600",
-                  color: "#22242A",
-                  margin: 0,
-                }}
-              >
-                500+
-              </h1>
-              <h1
-                style={{
-                  fontSize: "15px",
-                  fontWeight: "400",
-                  color: "#22242A",
-                }}
-              >
-                Supported cryptocurrency
-              </h1>
-            </div>
-          </div>
-        </div>
-      </div>
+      )}
       <div
         className="flex flex-col items-center justify-center"
         style={{
