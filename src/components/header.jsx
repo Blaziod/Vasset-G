@@ -3,12 +3,13 @@ import { useNavigate } from "react-router-dom";
 
 const Header = () => {
   const navigate = useNavigate();
-
-  const handleClick = () => {
-    navigate("/auth");
-  };
-
   const [isSmallScreen, setIsSmallScreen] = useState(window.innerWidth <= 768);
+  const [menuOpen, setMenuOpen] = useState(false);
+
+  const handleClick = (path) => {
+    navigate(path);
+    setMenuOpen(false); // Close the menu after navigation
+  };
 
   useEffect(() => {
     const handleResize = () => {
@@ -18,6 +19,10 @@ const Header = () => {
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
   }, []);
+
+  const toggleMenu = () => {
+    setMenuOpen((prev) => !prev);
+  };
 
   return (
     <div
@@ -45,14 +50,15 @@ const Header = () => {
             justifyContent: "space-between",
             cursor: "pointer",
             width: "100%",
-            padding: "0 20px",
+            paddingRight: "30px",
+            position: "relative", // Needed for dropdown positioning
           }}
         >
           {/* Logo on the left */}
           <img src="/assets/Vasset.png" alt="Logo" />
 
           {/* SVG on the right */}
-          <div>
+          <div onClick={toggleMenu}>
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="20"
@@ -66,11 +72,86 @@ const Header = () => {
               />
             </svg>
           </div>
+
+          {/* Dropdown Menu */}
+          {menuOpen && (
+            <div
+              style={{
+                position: "absolute",
+                top: "30px", // Adjust position based on SVG size
+                right: "20px",
+                backgroundColor: "#007A25",
+                boxShadow: "0px 4px 8px rgba(0, 0, 0, 0.1)",
+                borderRadius: "8px",
+                display: "flex",
+                flexDirection: "column",
+                width: "150px",
+                zIndex: "1000", // Ensure dropdown is above other elements
+                padding: "10px",
+              }}
+            >
+              <h1
+                style={{
+                  color: "#fff",
+                  fontSize: "14px",
+                  fontWeight: "500",
+                }}
+                onClick={() => handleClick("/auth")}
+              >
+                Buy / Sell Crypto
+              </h1>
+              <h1
+                style={{
+                  color: "#fff",
+                  fontSize: "14px",
+                  fontWeight: "500",
+                }}
+                onClick={() => handleClick("/auth")}
+              >
+                Swap
+              </h1>
+
+              <h1
+                style={{
+                  color: "#fff",
+                  fontSize: "14px",
+                  fontWeight: "500",
+                }}
+                onClick={() => handleClick("/auth")}
+              >
+                Login
+              </h1>
+              <button
+                style={{
+                  width: "auto",
+                  padding: "8px 20px",
+                  backgroundColor: "#fff",
+                  color: "#007A25",
+                  borderRadius: "8px",
+                  fontWeight: "bold",
+                  border: "none",
+                  cursor: "pointer",
+                  transition: "background-color 0.2s ease-in-out",
+                  fontSize: "12px",
+                }}
+                onMouseEnter={(e) =>
+                  (e.target.style.backgroundColor = "#00591A")
+                }
+                onMouseLeave={(e) =>
+                  (e.target.style.backgroundColor = "#007A25")
+                }
+                onClick={() => handleClick("/register")}
+              >
+                Register
+              </button>
+            </div>
+          )}
         </div>
       )}
 
       {!isSmallScreen && (
         <>
+          {/* Larger Screen Content */}
           <div
             style={{
               display: "flex",
@@ -78,12 +159,8 @@ const Header = () => {
               gap: "20px",
               cursor: "pointer",
             }}
-            onClick={handleClick}
           >
-            <div>
-              <img src="/assets/Vasset.png" alt="Logo" />
-            </div>
-
+            <img src="/assets/Vasset.png" alt="Logo" />
             <h1
               style={{ color: "#22242A", fontSize: "14px", fontWeight: "500" }}
             >
@@ -106,7 +183,7 @@ const Header = () => {
           >
             <h1
               style={{ color: "#22242A", fontSize: "14px", fontWeight: "500" }}
-              onClick={handleClick}
+              onClick={() => handleClick("/auth")}
             >
               Login
             </h1>
@@ -125,56 +202,10 @@ const Header = () => {
               }}
               onMouseEnter={(e) => (e.target.style.backgroundColor = "#00591A")}
               onMouseLeave={(e) => (e.target.style.backgroundColor = "#007A25")}
-              onClick={handleClick}
+              onClick={() => handleClick("/register")}
             >
               Register
             </button>
-            <div
-              style={{
-                width: "2px",
-                height: "20px",
-                backgroundColor: "#EAEBED",
-              }}
-            />
-            <div>
-              <svg
-                width="25"
-                height="24"
-                viewBox="0 0 25 24"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <g id="SVG">
-                  <path
-                    id="Vector"
-                    d="M8.17759 20.9002C8.14759 20.9002 8.10759 20.9202 8.07759 20.9202C6.13759 19.9602 4.55759 18.3702 3.58759 16.4302C3.58759 16.4002 3.60759 16.3602 3.60759 16.3302C4.82759 16.6902 6.08759 16.9602 7.33759 17.1702C7.55759 18.4302 7.81759 19.6802 8.17759 20.9002ZM21.4676 16.4402C20.4776 18.4302 18.8276 20.0402 16.8176 21.0102C17.1976 19.7402 17.5176 18.4602 17.7276 17.1702C18.9876 16.9602 20.2276 16.6902 21.4476 16.3302C21.4376 16.3702 21.4676 16.4102 21.4676 16.4402ZM21.5476 7.70023C20.2876 7.32023 19.0176 7.01023 17.7276 6.79023C17.5176 5.50023 17.2076 4.22023 16.8176 2.97023C18.8876 3.96023 20.5576 5.63023 21.5476 7.70023ZM8.17759 3.08023C7.81759 4.30023 7.55759 5.54023 7.34759 6.80023C6.05759 7.00023 4.77759 7.32023 3.50759 7.70023C4.47759 5.69023 6.08759 4.04023 8.07759 3.05023C8.10759 3.05023 8.14759 3.08023 8.17759 3.08023ZM16.0176 6.58023C13.6976 6.32023 11.3576 6.32023 9.03759 6.58023C9.28759 5.21023 9.60759 3.84023 10.0576 2.52023C10.0776 2.44023 10.0676 2.38023 10.0776 2.30023C10.8676 2.11023 11.6776 1.99023 12.5276 1.99023C13.3676 1.99023 14.1876 2.11023 14.9676 2.30023C14.9776 2.38023 14.9776 2.44023 14.9976 2.52023C15.4476 3.85023 15.7676 5.21023 16.0176 6.58023ZM7.11759 15.4802C5.73759 15.2302 4.37759 14.9102 3.05759 14.4602C2.97759 14.4402 2.91759 14.4502 2.83759 14.4402C2.64759 13.6502 2.52759 12.8402 2.52759 11.9902C2.52759 11.1502 2.64759 10.3302 2.83759 9.55023C2.91759 9.54023 2.97759 9.54023 3.05759 9.52023C4.38759 9.08023 5.73759 8.75023 7.11759 8.50023C6.86759 10.8202 6.86759 13.1602 7.11759 15.4802ZM22.5276 11.9902C22.5276 12.8402 22.4076 13.6502 22.2176 14.4402C22.1376 14.4502 22.0776 14.4402 21.9976 14.4602C20.6676 14.9002 19.3076 15.2302 17.9376 15.4802C18.1976 13.1602 18.1976 10.8202 17.9376 8.50023C19.3076 8.75023 20.6776 9.07023 21.9976 9.52023C22.0776 9.54023 22.1376 9.55023 22.2176 9.55023C22.4076 10.3402 22.5276 11.1502 22.5276 11.9902ZM16.0176 17.4002C15.7676 18.7802 15.4476 20.1402 14.9976 21.4602C14.9776 21.5402 14.9776 21.6002 14.9676 21.6802C14.1876 21.8702 13.3676 21.9902 12.5276 21.9902C11.6776 21.9902 10.8676 21.8702 10.0776 21.6802C10.0676 21.6002 10.0776 21.5402 10.0576 21.4602C9.62274 20.1325 9.2819 18.7758 9.03759 17.4002C10.1976 17.5302 11.3576 17.6202 12.5276 17.6202C13.6976 17.6202 14.8676 17.5302 16.0176 17.4002ZM16.2906 15.7532C13.7918 16.0688 11.2633 16.0688 8.76459 15.7532C8.44908 13.2545 8.44908 10.726 8.76459 8.22723C11.2633 7.91173 13.7918 7.91173 16.2906 8.22723C16.6061 10.726 16.6061 13.2545 16.2906 15.7532Z"
-                    fill="#707A8A"
-                  />
-                </g>
-              </svg>
-            </div>
-            <div>
-              <svg
-                width="25"
-                height="24"
-                viewBox="0 0 25 24"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <g id="SVG">
-                  <path
-                    id="Vector"
-                    d="M19.8675 14.4801L18.8675 12.8201C18.6575 12.4501 18.4675 11.7501 18.4675 11.3401V8.81014C18.4675 5.55014 15.8175 2.89014 12.5475 2.89014C9.27753 2.89014 6.62753 5.55014 6.62753 8.81014V11.3401C6.62753 11.7501 6.43753 12.4501 6.22753 12.8101L5.21753 14.4801C4.81753 15.1501 4.72753 15.8901 4.97753 16.5701C5.21753 17.2401 5.78753 17.7601 6.52753 18.0101C8.46753 18.6701 10.5075 18.9901 12.5475 18.9901C14.5875 18.9901 16.6275 18.6701 18.5675 18.0201C19.2675 17.7901 19.8075 17.2601 20.0675 16.5701C20.3275 15.8801 20.2575 15.1201 19.8675 14.4801Z"
-                    fill="#707A8A"
-                  />
-                  <path
-                    id="Vector_2"
-                    d="M14.7776 3.31023C14.0876 3.04023 13.3376 2.89023 12.5476 2.89023C11.7676 2.89023 11.0176 3.03023 10.3276 3.31023C10.7576 2.50023 11.6076 1.99023 12.5476 1.99023C13.4976 1.99023 14.3376 2.50023 14.7776 3.31023ZM15.3576 20.0002C15.1473 20.5824 14.7629 21.0857 14.2566 21.4417C13.7503 21.7977 13.1466 21.9893 12.5276 21.9902C11.7376 21.9902 10.9576 21.6702 10.4076 21.1002C10.0876 20.8002 9.84764 20.4002 9.70764 19.9902C9.83764 20.0102 9.96764 20.0202 10.1076 20.0402C10.3376 20.0702 10.5776 20.1002 10.8176 20.1202C11.3876 20.1702 11.9676 20.2002 12.5476 20.2002C13.1176 20.2002 13.6876 20.1702 14.2476 20.1202C14.4576 20.1002 14.6676 20.0902 14.8676 20.0602L15.3576 20.0002Z"
-                    fill="#707A8A"
-                  />
-                </g>
-              </svg>
-            </div>
           </div>
         </>
       )}

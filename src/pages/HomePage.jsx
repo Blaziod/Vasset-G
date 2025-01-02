@@ -446,6 +446,7 @@ const HomePage = () => {
                 display: "flex",
                 justifyContent: "space-between",
                 gap: "5px",
+                borderRadius: "10px",
               }}
             >
               <div
