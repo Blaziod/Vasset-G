@@ -460,6 +460,7 @@ const HomePage = () => {
                   maxWidth: "100vw",
                   boxSizing: "border-box",
                   alignItems: "center",
+                  borderRadius: "0.375rem", // 6px radius
                 }}
               >
                 {" "}

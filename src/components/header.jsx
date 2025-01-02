@@ -51,10 +51,11 @@ const Header = () => {
             cursor: "pointer",
             width: "100%",
             paddingRight: "30px",
-            position: "relative", // Needed for dropdown positioning
+            position: "relative",
+            maxWidth: "100vw",
+            boxSizing: "border-box",
           }}
         >
-          {/* Logo on the left */}
           <img src="/assets/Vasset.png" alt="Logo" />
 
           {/* SVG on the right */}
