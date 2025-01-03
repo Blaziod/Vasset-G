@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { MiniChart } from "react-ts-tradingview-widgets";
 import MarketOverview from "../components/cryptoWidget";
 import TopGainers from "../components/topGainers";
+import VassetLoans from "../components/vassetLoans";
 
 const Dashboard = () => {
   const [isSmallScreen, setIsSmallScreen] = useState(window.innerWidth <= 768);
@@ -179,6 +180,7 @@ const Dashboard = () => {
           <MarketOverview />
           <TopGainers />
         </div>
+        <VassetLoans />
       </div>
     </div>
   );

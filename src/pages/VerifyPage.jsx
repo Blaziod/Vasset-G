@@ -21,7 +21,7 @@ const VerifyPage = () => {
       <div className="w-full max-w-xl">
         <div className="flex justify-center mb-2">
           <img
-            src="src/assets/Logo.png"
+            src="/assets/Logo.png"
             alt="Logo"
             className="h-[120px] w-[200px]"
           />
