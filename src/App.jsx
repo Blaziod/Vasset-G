@@ -1,5 +1,10 @@
 import React from "react";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  Navigate,
+} from "react-router-dom";
 import HomePage from "./pages/HomePage";
 import AuthPage from "./pages/AuthPage";
 import VerifyPage from "./pages/VerifyPage";
@@ -16,6 +21,7 @@ function App() {
           <Route path="/auth" element={<AuthPage />} />
           <Route path="/verify" element={<VerifyPage />} />
           <Route path="/dashboard" element={<Dashboard />} />
+          <Route path="*" element={<Navigate to="/" />} />
         </Routes>
       </Layout>
     </Router>
