@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { MiniChart } from "react-ts-tradingview-widgets";
+import MarketOverview from "../components/cryptoWidget";
 
 const Dashboard = () => {
   const [isSmallScreen, setIsSmallScreen] = useState(window.innerWidth <= 768);
@@ -141,63 +142,41 @@ const Dashboard = () => {
           ))}
         </div>
 
-        <div style={{ width: "100%", alignSelf: "flex-start" }}>
+        <div
+          style={{
+            width: "100%",
+            alignSelf: isSmallScreen ? "center" : "flex-start",
+            paddingTop: isSmallScreen ? "30px" : "100px",
+            paddingBottom: isSmallScreen ? "0" : "30px",
+          }}
+        >
           <p
             style={{
-              color: "#121214",
+              color: isSmallScreen ? "#5A5A5A" : "#121214",
               fontSize: "28px",
               fontWeight: "bold",
               fontFamily: "sans-serif",
               width: "100%",
-              textAlign: "left",
+              textAlign: isSmallScreen ? "center" : "left",
+              margin: 0,
             }}
           >
             Market
           </p>
         </div>
-
         <div
           style={{
-            display: "grid",
-            gridTemplateColumns: isSmallScreen ? "1fr" : "1fr 1fr", // Two columns on large screens, one on small screens
-            justifyItems: "center",
-            gap: "10px", // Small gap between columns
-            width: "auto",
+            display: "flex",
             justifyContent: "center",
-            alignItems: "flex-start", // Align grid items to the top of the grid
+            alignItems: "center",
+            gap: "30px",
+            flexWrap: isSmallScreen ? "wrap" : "nowrap",
+            width: isSmallScreen ? "auto" : "100%",
+            alignSelf: isSmallScreen ? "center" : "flex-start",
           }}
         >
-          <div
-            style={{
-              padding: "15px",
-              justifyContent: "center",
-              gap: "15px",
-              height: "342px",
-              maxWidth: "600px",
-              alignItems: "flex-start", // Align content to the top of the cell
-              display: "flex",
-              flexDirection: "column",
-              backgroundColor: "#fff",
-              width: "100%",
-              borderRadius: "10px",
-            }}
-          ></div>
-
-          {/* <div
-            style={{
-              padding: "15px",
-              justifyContent: "center",
-              gap: "15px",
-              height: "342px",
-              maxWidth: "300px",
-              alignItems: "flex-start", // Align content to the top of the cell
-              display: "flex",
-              flexDirection: "column",
-              backgroundColor: "#fff",
-              width: "80%",
-              borderRadius: "10px",
-            }}
-          ></div> */}
+          <MarketOverview />
+          <MarketOverview />
         </div>
       </div>
     </div>
