@@ -54,7 +54,7 @@ const VassetLoans = () => {
       >
         <div
           style={{
-            width: isSmallScreen ? "350px" : "600px",
+            width: isSmallScreen ? "330px" : "600px",
             height: isSmallScreen ? "200px" : "200px",
             overflow: "hidden",
             backgroundColor: "#fff",
@@ -135,7 +135,7 @@ const VassetLoans = () => {
         </div>
         <div
           style={{
-            width: isSmallScreen ? "350px" : "600px",
+            width: isSmallScreen ? "330px" : "600px",
             height: isSmallScreen ? "200px" : "200px",
             overflow: "hidden",
             backgroundColor: "#fff",
