@@ -21,8 +21,6 @@ const Dashboard = () => {
         backgroundColor: "#F6F6F6",
         maxWidth: "100vw",
         minHeight: "100vh",
-        // justifyContent: "center",
-        // alignItems: "center",
         display: "flex",
         flexDirection: "column",
         paddingTop: "70px",

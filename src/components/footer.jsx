@@ -161,6 +161,7 @@ const Footer = () => {
           justifyContent: isSmallScreen ? "left" : "center",
           padding: isSmallScreen ? "10px" : "20px",
           backgroundColor: "#fff",
+          borderTop: "1px solid #E5E5E5",
         }}
       >
         <div>

@@ -11,6 +11,7 @@ import VerifyPage from "./pages/VerifyPage";
 import "./App.css";
 import Layout from "./components/layout";
 import Dashboard from "./pages/Dashboard";
+import Wallet from "./pages/wallet";
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
           <Route path="/auth" element={<AuthPage />} />
           <Route path="/verify" element={<VerifyPage />} />
           <Route path="/dashboard" element={<Dashboard />} />
+          <Route path="/wallet" element={<Wallet />} />
           <Route path="*" element={<Navigate to="/" />} />
         </Routes>
       </Layout>
