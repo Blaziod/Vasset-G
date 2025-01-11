@@ -2,6 +2,8 @@
   useEffect,
   useState,
 } from "react";
+import CircularCheckBox from "../../components/circularCheckBox";
+import { SearchIcon } from "lucide-react";
 
 const Wallet = () => {
   const [isSmallScreen, setIsSmallScreen] = useState(window.innerWidth <= 768);
@@ -29,39 +31,89 @@ const Wallet = () => {
     >
       <div style={{ padding: isSmallScreen ? "0" : "50px" }}>
         {isSmallScreen && (
-          <div
-            style={{
-              backgroundColor: "#0B5530",
-              padding: "20px",
-            }}
-          >
+          <>
             <div
               style={{
-                backgroundColor: "#007A25",
-                padding: "10px",
-                borderRadius: "8px",
+                backgroundColor: "#0B5530",
+                padding: "20px",
               }}
             >
-              <h1
+              <div
                 style={{
-                  color: "#D7FFDF",
-                  fontSize: "12px",
-                  fontWeight: "normal",
+                  backgroundColor: "#007A25",
+                  padding: "10px",
+                  borderRadius: "8px",
                 }}
               >
-                Estimated assets value
-              </h1>
-              <h1
-                style={{
-                  color: "#FFF",
-                  fontSize: "14px",
-                  fontWeight: "normal",
-                }}
-              >
-                40,000 NGN
-              </h1>
+                <h1
+                  style={{
+                    color: "#D7FFDF",
+                    fontSize: "12px",
+                    fontWeight: "normal",
+                  }}
+                >
+                  Estimated assets value
+                </h1>
+                <h1
+                  style={{
+                    color: "#FFF",
+                    fontSize: "14px",
+                    fontWeight: "normal",
+                  }}
+                >
+                  40,000 NGN
+                </h1>
+              </div>
             </div>
-          </div>
+            <div
+              style={{
+                backgroundColor: "white",
+                padding: "20px",
+                boxShadow: "4px 4px 4px rgba(0, 0, 0, 0.25)",
+                borderRadius: "8px",
+                border: "1px solid #E5E5E5",
+              }}
+            >
+              <div
+                style={{
+                  display: "flex",
+                  justifyContent: "space-between",
+                }}
+              >
+                <div
+                  style={{
+                    display: "flex",
+                    gap: "10px",
+                    alignItems: "center",
+                  }}
+                >
+                  <CircularCheckBox />
+                  <h1 style={{ fontSize: "14px", fontWeight: "normal" }}>
+                    Hide 0 balances
+                  </h1>
+                </div>
+                <div
+                  style={{
+                    display: "flex",
+                    alignItems: "center",
+                    border: "1px solid #ccc",
+                    borderRadius: "20px",
+                    padding: "5px",
+                    backgroundColor: "#fff",
+                  }}
+                >
+                  <div style={styles.iconContainer}>
+                    <SearchIcon width={20} height={20} />
+                  </div>
+                  <input
+                    type="text"
+                    placeholder="Search"
+                    style={styles.input}
+                  />
+                </div>
+              </div>
+            </div>
+          </>
         )}
         {!isSmallScreen && (
           <div
@@ -196,21 +248,65 @@ const Wallet = () => {
                 </button>
               </div>
             </div>
+            <div
+              style={{
+                padding: "20px",
+                display: "flex",
+                justifyContent: "space-between",
+              }}
+            >
+              <div
+                style={{
+                  display: "flex",
+                  gap: "10px",
+                  alignItems: "center",
+                }}
+              >
+                <CircularCheckBox />
+                <h1 style={{ fontSize: "14px", fontWeight: "normal" }}>
+                  Hide 0 balances
+                </h1>
+              </div>
+              <div style={styles.searchContainer}>
+                <div style={styles.iconContainer}>
+                  <SearchIcon width={20} height={20} />
+                </div>
+                <input type="text" placeholder="Search" style={styles.input} />
+              </div>
+            </div>
           </div>
         )}
-        <div
-          style={{
-            backgroundColor: "white",
-            padding: "20px",
-            boxShadow: "4px 4px 4px rgba(0, 0, 0, 0.25)",
-            borderRadius: "8px",
-            border: "1px solid #E5E5E5",
-            marginTop: "20px",
-          }}
-        ></div>
       </div>
     </div>
   );
+};
+
+const styles = {
+  searchContainer: {
+    display: "flex",
+    alignItems: "center",
+    border: "1px solid #ccc",
+    borderRadius: "20px",
+    padding: "5px",
+    width: "250px",
+    backgroundColor: "#fff",
+  },
+  input: {
+    flex: 1,
+    border: "none",
+    outline: "none",
+    fontSize: "12px",
+    marginLeft: "5px",
+    placeholderColor: "#CBD0D6",
+  },
+  iconContainer: {
+    fontSize: "18px",
+    color: "#888",
+    cursor: "pointer",
+    alignItems: "center",
+    display: "flex",
+    selfAlign: "center",
+  },
 };
 
 export default Wallet;
