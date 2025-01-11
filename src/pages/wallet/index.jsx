@@ -4,6 +4,7 @@
 } from "react";
 import CircularCheckBox from "../../components/circularCheckBox";
 import { SearchIcon } from "lucide-react";
+import axios from "axios";
 
 const Wallet = () => {
   const [isSmallScreen, setIsSmallScreen] = useState(window.innerWidth <= 768);
@@ -16,6 +17,97 @@ const Wallet = () => {
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
   }, []);
+
+  const [coins, setCoins] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  // List of exact coins you want to display
+  const exactCoins = [
+    "Bitcoin",
+    "Ethereum",
+    "Binance Coin",
+    "Cardano",
+    "Solana",
+    "Polkadot",
+    "Ripple",
+    "Litecoin",
+    "Avalanche",
+    "Chainlink",
+    "Tether",
+    "USD Coin",
+    "Dai",
+    "Binance USD",
+    "Dogecoin",
+    "Shiba Inu",
+    "Uniswap",
+    "Aave",
+    "Synthetix",
+    "Curve DAO Token",
+    "Axie Infinity",
+    "The Sandbox",
+    "Decentraland",
+    "Gala",
+    "Enjin Coin",
+    "Monero",
+    "Zcash",
+    "Dash",
+    "Polygon",
+    "Arbitrum",
+    "Optimism",
+    "Flow",
+    "Algorand",
+    "Hedera",
+    "VeChain",
+    "Cosmos",
+    "Tezos",
+    "Stellar",
+    "NEO",
+    "Filecoin",
+  ];
+
+  useEffect(() => {
+    // Fetch coin data from CoinGecko API
+    const fetchCoins = async () => {
+      try {
+        const response = await axios.get(
+          "https://api.coingecko.com/api/v3/coins/markets",
+          {
+            params: {
+              vs_currency: "usd", // Base currency
+              order: "market_cap_desc", // Order by market cap
+              per_page: 250, // Fetch up to 250 coins
+              page: 1, // First page
+            },
+          }
+        );
+
+        // Filter to only include the exact coins
+        const filteredCoins = response.data.filter((coin) =>
+          exactCoins.includes(coin.name)
+        );
+
+        // Map the filtered coins to the desired structure
+        const coinData = filteredCoins.map((coin) => ({
+          name: coin.name,
+          symbol: coin.symbol.toUpperCase(),
+          image: coin.image, // Image URL from API
+        }));
+
+        setCoins(coinData);
+        setLoading(false);
+      } catch (error) {
+        console.error("Error fetching coins:", error);
+        setLoading(false);
+      }
+    };
+
+    fetchCoins();
+  }, []);
+
+  if (loading) {
+    return <div>Loading coins...</div>;
+  }
+
   return (
     <div
       style={{
@@ -78,6 +170,7 @@ const Wallet = () => {
                 style={{
                   display: "flex",
                   justifyContent: "space-between",
+                  paddingBottom: "20px",
                 }}
               >
                 <div
@@ -98,7 +191,7 @@ const Wallet = () => {
                     alignItems: "center",
                     border: "1px solid #ccc",
                     borderRadius: "20px",
-                    padding: "5px",
+                    padding: "4px",
                     backgroundColor: "#fff",
                   }}
                 >
@@ -112,6 +205,143 @@ const Wallet = () => {
                   />
                 </div>
               </div>
+
+              {coins.map((coin, index) => (
+                <div
+                  key={index}
+                  style={{
+                    alignItems: "center",
+                    border: "1px solid #EAEBED",
+                    borderRadius: "8px",
+                    padding: "20px",
+                    backgroundColor: "#fff",
+                    marginBottom: "20px",
+                  }}
+                >
+                  <div
+                    style={{
+                      display: "flex",
+                      justifyContent: "space-between",
+                      alignItems: "center",
+                    }}
+                  >
+                    <div
+                      style={{
+                        display: "flex",
+                        gap: "10px",
+                        alignItems: "center",
+                      }}
+                    >
+                      <img
+                        src={coin.image}
+                        alt={coin.name}
+                        style={{
+                          width: "30px",
+                          height: "30px",
+                          borderRadius: "50%",
+                        }}
+                      />
+                      <div style={{ margin: "0px" }}>
+                        <p
+                          style={{
+                            margin: "0px",
+                            fontSize: "16px",
+                            color: "#22242A",
+                            fontWeight: "bold",
+                          }}
+                        >
+                          {coin.name}
+                        </p>
+                        <p
+                          style={{
+                            margin: "0px",
+                            fontSize: "12px",
+                            color: "#22242A",
+                          }}
+                        >
+                          {coin.symbol}
+                        </p>
+                      </div>
+                    </div>
+                    <div style={{ margin: "0px", textAlign: "right" }}>
+                      <p
+                        style={{
+                          margin: "0px",
+                          fontSize: "16px",
+                          color: "#22242A",
+                          fontWeight: "bold",
+                        }}
+                      >
+                        0
+                      </p>
+                      <p
+                        style={{
+                          margin: "0px",
+                          fontSize: "12px",
+                          color: "#707A8A",
+                        }}
+                      >
+                        0.00
+                      </p>
+                    </div>
+                  </div>
+                  <div
+                    style={{
+                      display: "flex",
+                      gap: "5px",
+                      justifyContent: "space-between",
+                      alignItems: "center",
+                      paddingTop: "10px",
+                    }}
+                  >
+                    <button
+                      style={{
+                        backgroundColor: "#007A25",
+                        border: "none",
+                        padding: "5px",
+                        borderRadius: "8px",
+                        height: "30px",
+                        width: "110px",
+                        color: "white",
+                        cursor: "pointer",
+                        fontSize: "12px",
+                      }}
+                    >
+                      Deposit
+                    </button>
+                    <button
+                      style={{
+                        backgroundColor: "#fff",
+                        padding: "5px",
+                        borderRadius: "8px",
+                        height: "30px",
+                        width: "110px",
+                        color: "#22242A",
+                        cursor: "pointer",
+                        fontSize: "12px",
+                        border: "1px solid #CBD0D6",
+                      }}
+                    >
+                      Withdraw
+                    </button>
+                    <button
+                      style={{
+                        backgroundColor: "#fff",
+                        padding: "5px",
+                        borderRadius: "8px",
+                        height: "30px",
+                        width: "110px",
+                        color: "#22242A",
+                        cursor: "pointer",
+                        fontSize: "12px",
+                        border: "1px solid #CBD0D6",
+                      }}
+                    >
+                      Swap
+                    </button>
+                  </div>
+                </div>
+              ))}
             </div>
           </>
         )}
