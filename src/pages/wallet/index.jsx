@@ -63,20 +63,23 @@ const Wallet = () => {
     "Stellar",
     "NEO",
     "Filecoin",
+    "BNB",
+    "TRON",
+    "NEAR Protocol",
+    "Axie Infinity",
   ];
 
   useEffect(() => {
-    // Fetch coin data from CoinGecko API
     const fetchCoins = async () => {
       try {
         const response = await axios.get(
           "https://api.coingecko.com/api/v3/coins/markets",
           {
             params: {
-              vs_currency: "usd", // Base currency
-              order: "market_cap_desc", // Order by market cap
-              per_page: 250, // Fetch up to 250 coins
-              page: 1, // First page
+              vs_currency: "usd",
+              order: "market_cap_desc",
+              per_page: 250,
+              page: 1,
             },
           }
         );
@@ -87,11 +90,21 @@ const Wallet = () => {
         );
 
         // Map the filtered coins to the desired structure
-        const coinData = filteredCoins.map((coin) => ({
+        let coinData = filteredCoins.map((coin) => ({
           name: coin.name,
           symbol: coin.symbol.toUpperCase(),
-          image: coin.image, // Image URL from API
+          image: coin.image,
         }));
+
+        // Sort the coins alphabetically by name
+        coinData = coinData.sort((a, b) => a.name.localeCompare(b.name));
+
+        // Add the Naira manually at the top
+        coinData.unshift({
+          name: "Naira",
+          symbol: "NGN",
+          image: "/assets/5.png",
+        });
 
         setCoins(coinData);
         setLoading(false);
