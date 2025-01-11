@@ -134,6 +134,18 @@ const Wallet = () => {
         paddingRight: isSmallScreen ? "0" : "20px",
       }}
     >
+      {loading && (
+        <div
+          style={{
+            fontSize: "20px",
+            textAlign: "center",
+            marginTop: "20px",
+            color: "#007A25",
+          }}
+        >
+          Loading coins...
+        </div>
+      )}
       <div style={{ padding: isSmallScreen ? "0" : "50px" }}>
         {isSmallScreen && (
           <>
