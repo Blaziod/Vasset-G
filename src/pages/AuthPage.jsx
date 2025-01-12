@@ -23,7 +23,7 @@ const AuthPage = () => {
 
   const handleSignIn = async () => {
     try {
-      const response = await axios.post(`${API_URL}/login`, {
+      const response = await axios.post(`${API_URL}/login/access-token`, {
         email,
         password,
       });
