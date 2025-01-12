@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Eye, EyeOff } from "lucide-react";
 import axios from "axios";
+import qs from "qs";
 
 const AuthPage = () => {
   const [activeTab, setActiveTab] = useState("signIn");
@@ -23,10 +24,27 @@ const AuthPage = () => {
 
   const handleSignIn = async () => {
     try {
-      const response = await axios.post(`${API_URL}/login/access-token`, {
-        email,
-        password,
+      const requestBody = qs.stringify({
+        grant_type: "password",
+        username: email, // Replace 'email' with your email variable
+        password: password, // Replace 'password' with your password variable
+        scope: "",
+        client_id: "string",
+        client_secret: "string",
       });
+
+      console.log("Request Body:", requestBody); // Debugging log
+
+      const response = await axios.post(
+        `${API_URL}/login/access-token`,
+        requestBody,
+        {
+          headers: {
+            "Content-Type": "application/x-www-form-urlencoded", // Set content type
+            accept: "application/json", // Optional, matches the curl command
+          },
+        }
+      );
 
       console.log("Login successful", response.data);
       alert("Login successful");
