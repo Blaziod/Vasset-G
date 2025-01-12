@@ -1,21 +1,70 @@
 import React, { useState } from "react";
 import { Eye, EyeOff } from "lucide-react";
+import axios from "axios";
 
 const AuthPage = () => {
   const [activeTab, setActiveTab] = useState("signIn");
   const [showPassword, setShowPassword] = useState(false);
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
+  const [email, setEmail] = useState("");
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
+  const [phoneNumber, setPhoneNumber] = useState("");
 
-  const handlePasswordChange = (e) => {
-    const value = e.target.value;
-    setPassword(value);
-    // validatePassword(value);
+  const API_URL = "https://vasset-kezx.onrender.com/api/v1"; // Replace with your backend API
+
+  const handlePasswordChange = (e) => setPassword(e.target.value);
+  const handleConfirmPasswordChange = (e) => setConfirmPassword(e.target.value);
+  const handleEmailChange = (e) => setEmail(e.target.value);
+  const handleFirstNameChange = (e) => setFirstName(e.target.value);
+  const handleLastNameChange = (e) => setLastName(e.target.value);
+  const handlePhoneNumberChange = (e) => setPhoneNumber(e.target.value);
+
+  const handleSignIn = async () => {
+    try {
+      const response = await axios.post(`${API_URL}/login`, {
+        email,
+        password,
+      });
+
+      console.log("Login successful", response.data);
+      alert("Login successful");
+    } catch (error) {
+      console.error("Login failed", error.response?.data || error.message);
+      alert(
+        "Login failed: " + (error.response?.data?.message || error.message)
+      );
+    }
   };
-  const handleConfirmPasswordChange = (e) => {
-    const value = e.target.value;
-    setConfirmPassword(value);
-    // validatePassword(value);
+
+  const handleSignUp = async () => {
+    if (password !== confirmPassword) {
+      alert("Passwords do not match");
+      return;
+    }
+
+    try {
+      const response = await axios.post(`${API_URL}/users/signup`, {
+        first_name: firstName,
+        last_name: lastName,
+        email: email,
+        phone_number: phoneNumber,
+        password: password,
+      });
+
+      console.log("Registration successful", response.data);
+      alert("Registration successful");
+    } catch (error) {
+      console.error(
+        "Registration failed",
+        error.response?.data || error.message
+      );
+      alert(
+        "Registration failed: " +
+          (error.response?.data?.message || error.message)
+      );
+    }
   };
 
   return (
@@ -166,6 +215,8 @@ const AuthPage = () => {
             <input
               type="email"
               placeholder="Email Address"
+              value={email}
+              onChange={handleEmailChange}
               style={{
                 width: "330px",
                 padding: "0.5rem",
@@ -262,6 +313,7 @@ const AuthPage = () => {
               }}
               onMouseEnter={(e) => (e.target.style.backgroundColor = "#00591A")}
               onMouseLeave={(e) => (e.target.style.backgroundColor = "#007A25")}
+              onClick={handleSignIn}
             >
               Sign In
             </button>
@@ -330,6 +382,8 @@ const AuthPage = () => {
               <input
                 type="name"
                 placeholder="First Name"
+                value={firstName}
+                onChange={handleFirstNameChange}
                 style={{
                   width: "50%",
                   padding: "0.5rem",
@@ -351,6 +405,8 @@ const AuthPage = () => {
               <input
                 type="name"
                 placeholder="Last Name"
+                value={lastName}
+                onChange={handleLastNameChange}
                 style={{
                   width: "50%",
                   padding: "0.5rem ",
@@ -373,6 +429,8 @@ const AuthPage = () => {
             <input
               type="email"
               placeholder="Email Address"
+              value={email}
+              onChange={handleEmailChange}
               style={{
                 width: "330px",
                 padding: "0.5rem ",
@@ -401,6 +459,8 @@ const AuthPage = () => {
                 inputMode="numeric"
                 type="phone"
                 placeholder="Phone Number"
+                value={phoneNumber}
+                onChange={handlePhoneNumberChange}
                 style={{
                   width: "330px",
                   padding: "0.5rem",
@@ -561,6 +621,7 @@ const AuthPage = () => {
               }}
               onMouseEnter={(e) => (e.target.style.backgroundColor = "#00591A")}
               onMouseLeave={(e) => (e.target.style.backgroundColor = "#007A25")}
+              onClick={handleSignUp}
             >
               Sign Up
             </button>
