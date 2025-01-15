@@ -1,32 +1,47 @@
 import React from "react";
-import {
-  BrowserRouter as Router,
-  Routes,
-  Route,
-  Navigate,
-} from "react-router-dom";
+import { Routes, Route, Navigate } from "react-router-dom";
 import HomePage from "./pages/HomePage";
 import AuthPage from "./pages/AuthPage";
-import VerifyPage from "./pages/VerifyPage";
-import "./App.css";
-import Layout from "./components/layout";
 import Dashboard from "./pages/Dashboard";
 import Wallet from "./pages/wallet";
+import ProtectedRoute from "./routes/protectedRoute";
+import GuestRoute from "./routes/guestRoute";
 
 function App() {
   return (
-    <Router>
-      <Layout>
-        <Routes>
-          <Route path="/" element={<HomePage />} />
-          <Route path="/auth" element={<AuthPage />} />
-          <Route path="/verify" element={<VerifyPage />} />
-          <Route path="/dashboard" element={<Dashboard />} />
-          <Route path="/wallet" element={<Wallet />} />
-          <Route path="*" element={<Navigate to="/" />} />
-        </Routes>
-      </Layout>
-    </Router>
+    <Routes>
+      {/* Guest Routes */}
+      <Route
+        path="/auth"
+        element={
+          <GuestRoute>
+            <AuthPage />
+          </GuestRoute>
+        }
+      />
+
+      {/* Protected Routes */}
+      <Route
+        path="/dashboard"
+        element={
+          <ProtectedRoute>
+            <Dashboard />
+          </ProtectedRoute>
+        }
+      />
+      <Route
+        path="/wallet"
+        element={
+          <ProtectedRoute>
+            <Wallet />
+          </ProtectedRoute>
+        }
+      />
+
+      {/* Public Routes */}
+      <Route path="/" element={<HomePage />} />
+      <Route path="*" element={<Navigate to="/" />} />
+    </Routes>
   );
 }
 

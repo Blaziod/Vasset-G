@@ -2,6 +2,9 @@ import React, { useState } from "react";
 import { Eye, EyeOff } from "lucide-react";
 import axios from "axios";
 import qs from "qs";
+import { toast } from "react-toastify";
+import { Navigate } from "react-router-dom";
+import { useAuth } from "../context/authContext";
 
 const AuthPage = () => {
   const [activeTab, setActiveTab] = useState("signIn");
@@ -12,6 +15,7 @@ const AuthPage = () => {
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [phoneNumber, setPhoneNumber] = useState("");
+  const { login } = useAuth();
 
   const API_URL = "https://vasset-kezx.onrender.com/api/v1"; // Replace with your backend API
 
@@ -21,6 +25,7 @@ const AuthPage = () => {
   const handleFirstNameChange = (e) => setFirstName(e.target.value);
   const handleLastNameChange = (e) => setLastName(e.target.value);
   const handlePhoneNumberChange = (e) => setPhoneNumber(e.target.value);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   const handleSignIn = async () => {
     try {
@@ -47,14 +52,22 @@ const AuthPage = () => {
       );
 
       console.log("Login successful", response.data);
-      alert("Login successful");
+      toast.success(response?.data?.detail || "Login successful");
+      login(response?.data?.detail?.access_token);
+      setIsLoggedIn(true);
     } catch (error) {
-      console.error("Login failed", error.response?.data || error.message);
-      alert(
-        "Login failed: " + (error.response?.data?.message || error.message)
+      console.error(
+        "Login failed",
+        error.response?.data?.detail || error.message
       );
+
+      toast.error(error.response?.data?.detail || error.message);
     }
   };
+
+  if (isLoggedIn) {
+    return <Navigate to="/dashboard" />;
+  }
 
   const handleSignUp = async () => {
     if (password !== confirmPassword) {
@@ -72,16 +85,13 @@ const AuthPage = () => {
       });
 
       console.log("Registration successful", response.data);
-      alert("Registration successful");
+      toast.success("Sign up successful");
     } catch (error) {
       console.error(
         "Registration failed",
         error.response?.data || error.message
       );
-      alert(
-        "Registration failed: " +
-          (error.response?.data?.message || error.message)
-      );
+      toast.error(error.response?.data?.detail || error.message);
     }
   };
 
