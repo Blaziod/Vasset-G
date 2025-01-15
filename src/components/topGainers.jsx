@@ -1,17 +1,18 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 
-const fetchWithRetry = async (url, options, retries = 3, delay = 10000) => {
+const fetchWithRetry = async (url, options, retries = 3, delay = 1000) => {
   try {
     const response = await axios.get(url, options);
+    console.log("API response:", response.data);
     return response;
   } catch (error) {
+    console.error(`Error fetching data. Retries left: ${retries}`, error);
     if (retries > 0) {
-      console.warn(`Retrying API call... Attempts left: ${retries}`);
       await new Promise((resolve) => setTimeout(resolve, delay));
       return fetchWithRetry(url, options, retries - 1, delay);
     }
-    throw error; // Exhausted retries, rethrow the error
+    throw error; // Re-throw if no retries left
   }
 };
 
@@ -39,7 +40,7 @@ const TopGainers = () => {
             params: {
               vs_currency: "usd",
               order: "market_cap_desc",
-              per_page: 100,
+              per_page: 50,
               page: 1,
               sparkline: false,
             },
@@ -96,8 +97,12 @@ const TopGainers = () => {
       }
     };
 
-    fetchTopGainers();
-    fetchLatestCoins();
+    const interval = setInterval(() => {
+      fetchTopGainers();
+      fetchLatestCoins();
+    }, 20000); // Fetch every 60 seconds
+
+    return () => clearInterval(interval);
   }, []);
 
   return (
@@ -117,10 +122,10 @@ const TopGainers = () => {
         Top Gainers
       </h2>
       <div style={{ display: "flex", flexDirection: "column", gap: "10px" }}>
-        {gainers.length > 0 ? (
-          gainers.map((coin) => (
+        {gainers?.length > 0 ? (
+          gainers?.map((coin) => (
             <div
-              key={coin.id}
+              key={coin?.id}
               style={{
                 display: "flex",
                 alignItems: "center",
@@ -135,8 +140,8 @@ const TopGainers = () => {
                 }}
               >
                 <img
-                  src={coin.image}
-                  alt={`${coin.name} logo`}
+                  src={coin?.image}
+                  alt={`${coin?.name} logo`}
                   style={{
                     width: "28px",
                     height: "28px",
@@ -151,7 +156,7 @@ const TopGainers = () => {
                     fontSize: "14px",
                   }}
                 >
-                  {coin.symbol.toUpperCase()}
+                  {coin?.symbol?.toUpperCase()}
                 </p>
               </div>
               <p
@@ -162,7 +167,9 @@ const TopGainers = () => {
                   textAlign: "left",
                 }}
               >
-                {coin.current_price.toFixed(2)}
+                {coin.current_price != null
+                  ? coin.current_price.toFixed(2)
+                  : "Price not available"}
               </p>
               <div
                 style={{
@@ -175,11 +182,14 @@ const TopGainers = () => {
                   style={{
                     margin: 0,
                     color:
-                      coin.price_change_percentage_24h > 0 ? "#20B26C" : "red",
+                      coin?.price_change_percentage_24h > 0 ? "#20B26C" : "red",
                     fontWeight: "bold",
                   }}
                 >
-                  {coin.price_change_percentage_24h.toFixed(2)}%
+                  {coin?.price_change_percentage_24h != null
+                    ? coin?.price_change_percentage_24h?.toFixed(2)
+                    : "Price not available"}
+                  %
                 </p>
               </div>
             </div>
@@ -200,10 +210,10 @@ const TopGainers = () => {
         New Listings
       </h2>
       <div style={{ display: "flex", flexDirection: "column", gap: "15px" }}>
-        {latestCoins.length > 0 ? (
-          latestCoins.map((coin) => (
+        {latestCoins?.length > 0 ? (
+          latestCoins?.map((coin) => (
             <div
-              key={coin.id}
+              key={coin?.id}
               style={{
                 display: "flex",
                 alignItems: "center",
@@ -219,8 +229,8 @@ const TopGainers = () => {
                 }}
               >
                 <img
-                  src={coin.image}
-                  alt={`${coin.name} logo`}
+                  src={coin?.image}
+                  alt={`${coin?.name} logo`}
                   style={{
                     width: "28px",
                     height: "28px",
@@ -235,7 +245,7 @@ const TopGainers = () => {
                     fontSize: "14px",
                   }}
                 >
-                  {coin.symbol.toUpperCase()}
+                  {coin?.symbol?.toUpperCase()}
                 </p>
               </div>
               <p
@@ -246,7 +256,9 @@ const TopGainers = () => {
                   textAlign: "left",
                 }}
               >
-                {coin.current_price.toFixed(2)}
+                {coin?.current_price != null
+                  ? coin?.current_price.toFixed(2)
+                  : "Price not available"}
               </p>
               <div
                 style={{
@@ -259,11 +271,14 @@ const TopGainers = () => {
                   style={{
                     margin: 0,
                     color:
-                      coin.price_change_percentage_24h > 0 ? "#20B26C" : "red",
+                      coin?.price_change_percentage_24h > 0 ? "#20B26C" : "red",
                     fontWeight: "bold",
                   }}
                 >
-                  {coin.price_change_percentage_24h.toFixed(2)}%
+                  {coin?.price_change_percentage_24h != null
+                    ? coin?.price_change_percentage_24h?.toFixed(2)
+                    : "Price not available"}
+                  %
                 </p>
               </div>
             </div>

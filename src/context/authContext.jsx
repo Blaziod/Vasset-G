@@ -4,7 +4,6 @@ import PropTypes from "prop-types";
 const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
-  // Prop validation
   AuthProvider.propTypes = {
     children: PropTypes.node.isRequired,
   };
@@ -12,7 +11,6 @@ export const AuthProvider = ({ children }) => {
   const [auth, setAuth] = useState(null);
 
   useEffect(() => {
-    // Check localStorage for an existing token
     const token = localStorage.getItem("authToken");
     if (token) {
       setAuth({ token });
@@ -20,17 +18,18 @@ export const AuthProvider = ({ children }) => {
   }, []);
 
   const login = (token) => {
-    localStorage.setItem("authToken", token); // Store the token
-    setAuth({ token }); // Set auth state
+    localStorage.setItem("authToken", token);
+    setAuth({ token });
   };
 
   const logout = () => {
-    localStorage.removeItem("authToken"); // Clear token
+    console.log("Logging out...");
+    localStorage.removeItem("authToken");
     setAuth(null); // Clear auth state
-    window.location.href = "/auth"; // Redirect to login
+    console.log("Auth state cleared.");
   };
 
-  const isAuthenticated = () => !!auth; // Return true if auth exists
+  const isAuthenticated = () => !!auth;
 
   return (
     <AuthContext.Provider value={{ auth, login, logout, isAuthenticated }}>

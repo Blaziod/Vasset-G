@@ -11,7 +11,7 @@ const MainHeader = () => {
   const { logout } = useAuth();
 
   const Logout = () => {
-    logout;
+    logout();
     navigate("/auth");
   };
 
