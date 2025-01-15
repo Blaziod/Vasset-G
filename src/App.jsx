@@ -7,10 +7,13 @@ import Wallet from "./pages/wallet";
 // import ProtectedRoute from "./routes/protectedRoute";
 import GuestRoute from "./routes/guestRoute";
 import Layout from "./components/layout";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 function App() {
   return (
     <Layout>
+      <ToastContainer />
       <Routes>
         {/* Guest Routes */}
         <Route

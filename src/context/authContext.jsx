@@ -27,6 +27,7 @@ export const AuthProvider = ({ children }) => {
   const logout = () => {
     localStorage.removeItem("authToken"); // Clear token
     setAuth(null); // Clear auth state
+    window.location.href = "/auth"; // Redirect to login
   };
 
   const isAuthenticated = () => !!auth; // Return true if auth exists

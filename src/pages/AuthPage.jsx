@@ -88,8 +88,8 @@ const AuthPage = () => {
       });
       setIsLoading(false);
       console.log("Registration successful", response.data);
+      setActiveTab("signIn");
       toast.success("Sign up successful,  Please Login");
-      alert("Please Login With your details");
     } catch (error) {
       console.error(
         "Registration failed",

@@ -1,11 +1,19 @@
 /* eslint-disable react/no-unknown-property */
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import { useAuth } from "../context/authContext";
 
 const MainHeader = () => {
   const navigate = useNavigate();
   const [isSmallScreen, setIsSmallScreen] = useState(window.innerWidth <= 768);
   const [menuOpen, setMenuOpen] = useState(false);
+
+  const { logout } = useAuth();
+
+  const Logout = () => {
+    logout;
+    navigate("/auth");
+  };
 
   // Handle navigation and close the menu
   const handleClick = (path) => {
@@ -50,9 +58,9 @@ const MainHeader = () => {
       </button>
       <button
         style={buttonStyle("#fff", "#007A25", "1px solid #007A25")}
-        onClick={() => handleClick("/login")}
+        onClick={() => Logout()}
       >
-        Login
+        Logout
       </button>
       {/* Example Menu Items */}
       {menuItems.map(({ label, icon, path }) => (
@@ -471,6 +479,12 @@ const MainHeader = () => {
                 fill="#707A8A"
               />
             </svg>
+            <button
+              style={buttonStyle("#fff", "#007A25", "1px solid #007A25")}
+              onClick={() => Logout()}
+            >
+              Logout
+            </button>
           </div>
         </>
       )}
