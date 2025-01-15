@@ -8,7 +8,7 @@ import { useAuth } from "../context/authContext";
 import ReactLoading from "react-loading";
 
 const AuthPage = () => {
-  const [activeTab, setActiveTab] = useState("signIn");
+  const [activeTab, setActiveTab] = useState("signUp");
   const [showPassword, setShowPassword] = useState(false);
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
