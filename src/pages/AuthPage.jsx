@@ -5,6 +5,7 @@ import qs from "qs";
 import { toast } from "react-toastify";
 import { Navigate } from "react-router-dom";
 import { useAuth } from "../context/authContext";
+import ReactLoading from "react-loading";
 
 const AuthPage = () => {
   const [activeTab, setActiveTab] = useState("signIn");
@@ -26,6 +27,7 @@ const AuthPage = () => {
   const handleLastNameChange = (e) => setLastName(e.target.value);
   const handlePhoneNumberChange = (e) => setPhoneNumber(e.target.value);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
 
   const handleSignIn = async () => {
     try {
@@ -39,7 +41,7 @@ const AuthPage = () => {
       });
 
       console.log("Request Body:", requestBody); // Debugging log
-
+      setIsLoading(true);
       const response = await axios.post(
         `${API_URL}/login/access-token`,
         requestBody,
@@ -52,6 +54,7 @@ const AuthPage = () => {
       );
 
       console.log("Login successful", response.data);
+      setIsLoading(false);
       toast.success(response?.data?.detail || "Login successful");
       login(response?.data?.detail?.access_token);
       setIsLoggedIn(true);
@@ -60,7 +63,7 @@ const AuthPage = () => {
         "Login failed",
         error.response?.data?.detail || error.message
       );
-
+      setIsLoading(false);
       toast.error(error.response?.data?.detail || error.message);
     }
   };
@@ -74,7 +77,7 @@ const AuthPage = () => {
       alert("Passwords do not match");
       return;
     }
-
+    setIsLoading(true);
     try {
       const response = await axios.post(`${API_URL}/users/signup`, {
         first_name: firstName,
@@ -83,7 +86,7 @@ const AuthPage = () => {
         phone_number: phoneNumber,
         password: password,
       });
-
+      setIsLoading(false);
       console.log("Registration successful", response.data);
       toast.success("Sign up successful,  Please Login");
     } catch (error) {
@@ -92,6 +95,7 @@ const AuthPage = () => {
         error.response?.data || error.message
       );
       toast.error(error.response?.data?.detail || error.message);
+      setIsLoading(false);
     }
   };
 
@@ -342,8 +346,26 @@ const AuthPage = () => {
               onMouseEnter={(e) => (e.target.style.backgroundColor = "#00591A")}
               onMouseLeave={(e) => (e.target.style.backgroundColor = "#007A25")}
               onClick={handleSignIn}
+              disabled={isLoading}
             >
-              Sign In
+              {isLoading ? (
+                <div
+                  style={{
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                  }}
+                >
+                  <ReactLoading
+                    type="bars"
+                    color="#fff"
+                    height={20}
+                    width={20}
+                  />
+                </div>
+              ) : (
+                <p style={{ color: "white", fontWeight: "bold" }}>Sign In</p>
+              )}
             </button>
           </div>
         )}
@@ -650,8 +672,26 @@ const AuthPage = () => {
               onMouseEnter={(e) => (e.target.style.backgroundColor = "#00591A")}
               onMouseLeave={(e) => (e.target.style.backgroundColor = "#007A25")}
               onClick={handleSignUp}
+              disabled={isLoading}
             >
-              Sign Up
+              {isLoading ? (
+                <div
+                  style={{
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                  }}
+                >
+                  <ReactLoading
+                    type="bars"
+                    color="#fff"
+                    height={20}
+                    width={20}
+                  />
+                </div>
+              ) : (
+                <p style={{ color: "white", fontWeight: "bold" }}>Sign Up</p>
+              )}
             </button>
           </div>
         )}
