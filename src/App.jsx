@@ -4,44 +4,33 @@ import HomePage from "./pages/HomePage";
 import AuthPage from "./pages/AuthPage";
 import Dashboard from "./pages/Dashboard";
 import Wallet from "./pages/wallet";
-import ProtectedRoute from "./routes/protectedRoute";
+// import ProtectedRoute from "./routes/protectedRoute";
 import GuestRoute from "./routes/guestRoute";
+import Layout from "./components/layout";
 
 function App() {
   return (
-    <Routes>
-      {/* Guest Routes */}
-      <Route
-        path="/auth"
-        element={
-          <GuestRoute>
-            <AuthPage />
-          </GuestRoute>
-        }
-      />
+    <Layout>
+      <Routes>
+        {/* Guest Routes */}
+        <Route
+          path="/auth"
+          element={
+            <GuestRoute>
+              <AuthPage />
+            </GuestRoute>
+          }
+        />
 
-      {/* Protected Routes */}
-      <Route
-        path="/dashboard"
-        element={
-          <ProtectedRoute>
-            <Dashboard />
-          </ProtectedRoute>
-        }
-      />
-      <Route
-        path="/wallet"
-        element={
-          <ProtectedRoute>
-            <Wallet />
-          </ProtectedRoute>
-        }
-      />
+        {/* Protected Routes */}
+        <Route path="/dashboard" element={<Dashboard />} />
+        <Route path="/wallet" element={<Wallet />} />
 
-      {/* Public Routes */}
-      <Route path="/" element={<HomePage />} />
-      <Route path="*" element={<Navigate to="/" />} />
-    </Routes>
+        {/* Public Routes */}
+        <Route path="/" element={<HomePage />} />
+        <Route path="*" element={<Navigate to="/" />} />
+      </Routes>
+    </Layout>
   );
 }
 

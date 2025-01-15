@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 
-const fetchWithRetry = async (url, options, retries = 3, delay = 1000) => {
+const fetchWithRetry = async (url, options, retries = 3, delay = 10000) => {
   try {
     const response = await axios.get(url, options);
     return response;

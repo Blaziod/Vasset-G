@@ -1,7 +1,5 @@
-/* eslint-disable react/no-unknown-property */ import React, {
-  useEffect,
-  useState,
-} from "react";
+/* eslint-disable react/no-unknown-property */
+import React, { useEffect, useState } from "react";
 import CircularCheckBox from "../../components/circularCheckBox";
 import { SearchIcon } from "lucide-react";
 import axios from "axios";

@@ -85,7 +85,7 @@ const AuthPage = () => {
       });
 
       console.log("Registration successful", response.data);
-      toast.success("Sign up successful");
+      toast.success("Sign up successful,  Please Login");
     } catch (error) {
       console.error(
         "Registration failed",

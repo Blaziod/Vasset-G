@@ -1,34 +1,35 @@
-/* eslint-disable react/prop-types */
 import React, { createContext, useContext, useState, useEffect } from "react";
+import PropTypes from "prop-types";
 
 const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
+  // Prop validation
+  AuthProvider.propTypes = {
+    children: PropTypes.node.isRequired,
+  };
+
   const [auth, setAuth] = useState(null);
 
   useEffect(() => {
-    // Check if the token exists in localStorage on initial load
-    const token = localStorage.getItem("authToken");
+    // Check localStorage for an existing token
+    const token = localStorage.getItem("authTokeen");
     if (token) {
       setAuth({ token });
     }
   }, []);
 
   const login = (token) => {
-    // Save the token in localStorage
-    localStorage.setItem("authToken", token);
-    setAuth({ token });
+    localStorage.setItem("authToken", token); // Store the token
+    setAuth({ token }); // Set auth state
   };
 
   const logout = () => {
-    // Remove the token from localStorage
-    localStorage.removeItem("authToken");
-    setAuth(null);
+    localStorage.removeItem("authToken"); // Clear token
+    setAuth(null); // Clear auth state
   };
 
-  const isAuthenticated = () => {
-    return !!auth;
-  };
+  const isAuthenticated = () => !!auth; // Return true if auth exists
 
   return (
     <AuthContext.Provider value={{ auth, login, logout, isAuthenticated }}>
