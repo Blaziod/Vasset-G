@@ -4,7 +4,6 @@ import axios from "axios";
 const fetchWithRetry = async (url, options, retries = 3, delay = 1000) => {
   try {
     const response = await axios.get(url, options);
-    console.log("API response:", response.data);
     return response;
   } catch (error) {
     console.error(`Error fetching data. Retries left: ${retries}`, error);

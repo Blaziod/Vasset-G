@@ -1,7 +1,7 @@
 /* eslint-disable react/no-unescaped-entities */
 import React, { useState } from "react";
 import axios from "axios";
-import qs from "qs";
+// import qs from "qs";
 import { toast } from "react-toastify";
 import { Navigate } from "react-router-dom";
 import { useAuth } from "../context/authContext";
@@ -28,30 +28,46 @@ const VerifyPage = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const { login } = useAuth();
 
+  const NotLoggedIn = () => {
+    console.log("Token removed");
+    <Navigate to="/auth" />;
+  };
+
   const handleConfirm = async () => {
-    const otpCode = otp.join(""); // Combine OTP into a single string
-    if (otpCode.length < 6) {
-      toast.error("Please complete the OTP.");
+    const otp_code = otp.join(""); // Combine OTP into a single string
+    if (otp_code.length !== 6) {
+      toast.error("Please provide a valid 6-character OTP.");
       return;
     }
     try {
       setIsLoading(true);
 
-      // Add query parameters directly in the URL
-      const requestUrl = `${API_URL}/users/verify-user?${qs.stringify({
-        otp_code: otpCode,
-        signup_token: signup_token,
-      })}`;
-
-      const response = await axios.post(requestUrl, null, {
-        headers: {
-          accept: "application/json", // Match Swagger headers
-        },
+      // Create the request payload and convert it to a JSON string
+      const payload = JSON.stringify({
+        otp_code: otp_code.toString(), // Ensure `otp_code` is explicitly a string
+        signup_token: signup_token.toString(), // Ensure `signup_token` is explicitly a string
       });
+
+      // Send POST request with JSON string payload
+      const response = await axios.post(
+        `${API_URL}/users/verify_user`,
+        payload, // JSON string payload
+        {
+          headers: {
+            "Content-Type": "application/json",
+            Accept: "application/json",
+          },
+        }
+      );
 
       setIsLoading(false);
       toast.success(response?.data?.message || "Verification successful");
-      login(response?.data?.token); // Assuming the token is returned
+      const token = response?.data?.access_token;
+      if (!token) {
+        NotLoggedIn();
+        throw new Error("No token provided");
+      }
+      login(token);
       setIsLoggedIn(true);
     } catch (error) {
       console.error(

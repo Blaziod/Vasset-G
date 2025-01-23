@@ -41,7 +41,6 @@ const AuthPage = () => {
         client_secret: "string",
       });
 
-      console.log("Request Body:", requestBody); // Debugging log
       setIsLoading(true);
       const response = await axios.post(
         `${API_URL}/login/access-token`,
