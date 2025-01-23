@@ -1,7 +1,13 @@
 /* eslint-disable react/no-unescaped-entities */
 import React, { useState } from "react";
+import axios from "axios";
+import qs from "qs";
+import { toast } from "react-toastify";
+import { Navigate } from "react-router-dom";
+import { useAuth } from "../context/authContext";
 
 const VerifyPage = () => {
+  const API_URL = "https://vasset-kezx.onrender.com/api/v1";
   const [otp, setOtp] = useState(new Array(6).fill(""));
 
   const handlePaste = (e) => {
@@ -16,44 +22,131 @@ const VerifyPage = () => {
     setOtp(newOtp);
   };
 
+  const email = localStorage.getItem("userEmail");
+  const signup_token = localStorage.getItem("SignUpToken");
+  const [isLoading, setIsLoading] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const { login } = useAuth();
+
+  const handleConfirm = async () => {
+    const otpCode = otp.join(""); // Combine OTP into a single string
+    if (otpCode.length < 6) {
+      toast.error("Please complete the OTP.");
+      return;
+    }
+    try {
+      setIsLoading(true);
+
+      // Add query parameters directly in the URL
+      const requestUrl = `${API_URL}/users/verify-user?${qs.stringify({
+        otp_code: otpCode,
+        signup_token: signup_token,
+      })}`;
+
+      const response = await axios.post(requestUrl, null, {
+        headers: {
+          accept: "application/json", // Match Swagger headers
+        },
+      });
+
+      setIsLoading(false);
+      toast.success(response?.data?.message || "Verification successful");
+      login(response?.data?.token); // Assuming the token is returned
+      setIsLoggedIn(true);
+    } catch (error) {
+      console.error(
+        "Verification failed",
+        error.response?.data?.message || error.message
+      );
+      setIsLoading(false);
+      toast.error(error.response?.data?.message || error.message);
+    }
+  };
+
+  if (isLoggedIn) {
+    return <Navigate to="/dashboard" />;
+  }
+
   return (
-    <div className="min-h-screen flex items-center justify-center bg-[#F6F6F6]">
-      <div className="w-full max-w-xl">
-        <div className="flex justify-center mb-2">
+    <div
+      style={{
+        minHeight: "screen",
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+        backgroundColor: "#F6F6F6",
+      }}
+    >
+      <div style={{ width: "full", maxWidth: "xl" }}>
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "center",
+            marginBottom: "10px",
+          }}
+        >
           <img
             src="/assets/Logo.png"
             alt="Logo"
             className="h-[120px] w-[200px]"
           />
         </div>
-        <div className="w-full">
+        {isLoading && (
+          <div
+            style={{
+              paddingTop: "20px",
+              textAlign: "center",
+              fontSize: "20px",
+            }}
+          >
+            Loading...
+          </div>
+        )}
+        <div style={{ width: "100%" }}>
           <h1
-            className="text-[#000000] text-center"
-            style={{ fontSize: "40px", fontWeight: "550" }}
+            style={{
+              fontSize: "40px",
+              fontWeight: "550",
+              textAlign: "center",
+              color: "#000",
+            }}
           >
             Confirm your request
           </h1>
           <p
-            className="text-[#000000] text-center mt-2"
-            style={{ fontSize: "14px" }}
+            style={{
+              fontSize: "14px",
+              textAlign: "center",
+              color: "#000",
+              marginTop: "10px",
+            }}
           >
             Enter the OTP that we have emailed to
-            <span className="font-bold whitespace-nowrap">
+            <span
+              style={{
+                fontWeight: "bolder",
+                whiteSpace: "nowrap",
+                color: "#007A25",
+              }}
+            >
               {" "}
-              aueibd6@gmail.com
+              {email}
             </span>{" "}
             to login.
           </p>
         </div>
 
         <div
-          className="flex justify-center"
-          style={{ paddingTop: "30px", paddingBottom: "20px" }}
+          style={{
+            paddingTop: "30px",
+            paddingBottom: "20px",
+            display: "flex",
+            justifyContent: "center",
+          }}
         >
           <div
-            className="flex space-x-2"
             onPaste={handlePaste}
-            style={{ justifyContent: "center", gap: "10px" }}
+            style={{ justifyContent: "center", gap: "10px", display: "flex" }}
           >
             {otp.map((data, index) => (
               <input
@@ -111,7 +204,13 @@ const VerifyPage = () => {
           </div>
         </div>
 
-        <div className="flex justify-center" style={{ paddingTop: "20px" }}>
+        <div
+          style={{
+            paddingTop: "20px",
+            display: "flex",
+            justifyContent: "center",
+          }}
+        >
           <button
             style={{
               width: "20%",
@@ -126,21 +225,30 @@ const VerifyPage = () => {
             }}
             onMouseEnter={(e) => (e.target.style.backgroundColor = "#00591A")}
             onMouseLeave={(e) => (e.target.style.backgroundColor = "#007A25")}
+            onClick={handleConfirm}
           >
             Confirm
           </button>
         </div>
 
-        <div className="w-full" style={{ paddingTop: "20px" }}>
+        <div style={{ paddingTop: "20px", width: "100%" }}>
           <p
-            className="text-[#000000] text-center mt-2"
-            style={{ fontSize: "14px" }}
+            style={{
+              fontSize: "14px",
+              color: "#000",
+              paddingTop: "10px",
+              textAlign: "center",
+            }}
           >
             Please check spam box too if you can't find the email in your inbox.
           </p>
           <p
-            className="text-[#000000] text-center mt-2"
-            style={{ fontSize: "14px", paddingTop: "10px" }}
+            style={{
+              fontSize: "14px",
+              color: "#000",
+              paddingTop: "10px",
+              textAlign: "center",
+            }}
           >
             Still can’t find it?{" "}
             <span

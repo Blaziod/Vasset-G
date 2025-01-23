@@ -4,6 +4,7 @@ import HomePage from "./pages/HomePage";
 import AuthPage from "./pages/AuthPage";
 import Dashboard from "./pages/Dashboard";
 import Wallet from "./pages/wallet";
+import VerifyPage from "./pages/VerifyPage";
 // import ProtectedRoute from "./routes/protectedRoute";
 import GuestRoute from "./routes/guestRoute";
 import Layout from "./components/layout";
@@ -21,6 +22,14 @@ function App() {
           element={
             <GuestRoute>
               <AuthPage />
+            </GuestRoute>
+          }
+        />
+        <Route
+          path="/verify"
+          element={
+            <GuestRoute>
+              <VerifyPage />
             </GuestRoute>
           }
         />

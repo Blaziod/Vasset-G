@@ -27,6 +27,7 @@ const AuthPage = () => {
   const handleLastNameChange = (e) => setLastName(e.target.value);
   const handlePhoneNumberChange = (e) => setPhoneNumber(e.target.value);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [isSignUp, setIsSignUp] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
 
   const handleSignIn = async () => {
@@ -52,8 +53,6 @@ const AuthPage = () => {
           },
         }
       );
-
-      console.log("Login successful", response.data);
       setIsLoading(false);
       toast.success(response?.data?.detail || "Login successful");
       login(response?.data?.detail?.access_token);
@@ -87,9 +86,11 @@ const AuthPage = () => {
         password: password,
       });
       setIsLoading(false);
-      console.log("Registration successful", response.data);
       setActiveTab("signIn");
-      toast.success("Sign up successful,  Please Login");
+      toast.success("Sign up successful");
+      localStorage.setItem("SignUpToken", response.data.signup_token);
+      localStorage.setItem("userEmail", email);
+      setIsSignUp(true);
     } catch (error) {
       console.error(
         "Registration failed",
@@ -100,6 +101,9 @@ const AuthPage = () => {
     }
   };
 
+  if (isSignUp) {
+    return <Navigate to="/verify" />;
+  }
   return (
     <div
       style={{
