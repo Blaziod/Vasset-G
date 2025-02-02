@@ -1,12 +1,23 @@
 /* eslint-disable react/prop-types */
-import React from "react";
-import { Navigate } from "react-router-dom";
-import { useAuth } from "../context/authContext";
+import { useEffect } from "react";
+import { useLocation } from "react-router-dom";
 
 const GuestRoute = ({ children }) => {
-  const { isAuthenticated } = useAuth();
+  const authToken = localStorage.getItem("access_token");
+  const location = useLocation();
 
-  return !isAuthenticated() ? children : <Navigate to="/dashboard" />;
+  // List of restricted pages when authenticated
+  const restrictedPages = ["/auth", "/verify", "/auth/callback"];
+
+  useEffect(() => {
+    if (authToken && restrictedPages.includes(location.pathname)) {
+      window.location.href = "/dashboard"; // Redirect if token exists
+    }
+  }, [authToken, location.pathname]);
+
+  return authToken && restrictedPages.includes(location.pathname)
+    ? null
+    : children;
 };
 
 export default GuestRoute;

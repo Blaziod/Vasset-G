@@ -43,11 +43,9 @@ function App() {
           }
         />
 
-        {/* Protected Routes */}
         <Route path="/dashboard" element={<Dashboard />} />
         <Route path="/wallet" element={<Wallet />} />
 
-        {/* Public Routes */}
         <Route path="/" element={<HomePage />} />
         <Route path="*" element={<Navigate to="/" />} />
       </Routes>

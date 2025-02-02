@@ -13,17 +13,15 @@ const AuthCallback = () => {
     const token = urlParams.get("token");
 
     if (token) {
-      // Store token (in localStorage or context)
       localStorage.setItem("authToken", token);
-      login(token); // Call your auth context function
+      login(token);
 
       toast.success("Login successful");
 
-      // Redirect user to dashboard
       navigate("/dashboard");
     } else {
       toast.error("Authentication failed. No token received.");
-      navigate("/login"); // Redirect back to login if there's an issue
+      navigate("/auth");
     }
   }, [navigate, login]);
 
