@@ -103,6 +103,11 @@ const AuthPage = () => {
   if (isSignUp) {
     return <Navigate to="/verify" />;
   }
+
+  const handleGoogleLogin = () => {
+    window.location.href = `${API_URL}/auth/login`;
+  };
+
   return (
     <div
       style={{
@@ -222,6 +227,7 @@ const AuthPage = () => {
                 fontWeight: "bold",
                 cursor: "pointer",
               }}
+              onClick={handleGoogleLogin}
             >
               <span
                 style={{
@@ -399,6 +405,7 @@ const AuthPage = () => {
                 fontWeight: "bold",
                 cursor: "pointer",
               }}
+              onClick={handleGoogleLogin}
             >
               <span
                 style={{

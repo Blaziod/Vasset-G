@@ -10,6 +10,7 @@ import GuestRoute from "./routes/guestRoute";
 import Layout from "./components/layout";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import AuthCallback from "./components/authCallback";
 
 function App() {
   return (
@@ -22,6 +23,14 @@ function App() {
           element={
             <GuestRoute>
               <AuthPage />
+            </GuestRoute>
+          }
+        />
+        <Route
+          path="/auth/callback"
+          element={
+            <GuestRoute>
+              <AuthCallback />
             </GuestRoute>
           }
         />
