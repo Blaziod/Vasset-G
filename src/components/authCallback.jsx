@@ -1,14 +1,16 @@
-import React from "react";
-import { useEffect } from "react";
+import React, { useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
-import { useAuth } from "../context/authContext"; // Ensure your Auth Context is properly set up
+import { useAuth } from "../context/authContext";
 import { toast } from "react-toastify";
 
 const AuthCallback = () => {
   const navigate = useNavigate();
-  const { login } = useAuth(); // Assuming login function stores token in context/localStorage
+  const { login } = useAuth();
+  const isAuthProcessed = useRef(false); // Prevent duplicate execution
 
   useEffect(() => {
+    if (isAuthProcessed.current) return; // Prevent re-execution
+
     const urlParams = new URLSearchParams(window.location.search);
     const token = urlParams.get("token");
 
@@ -17,15 +19,16 @@ const AuthCallback = () => {
       login(token);
 
       toast.success("Login successful");
-
       navigate("/dashboard");
     } else {
       toast.error("Authentication failed. No token received.");
       navigate("/auth");
     }
+
+    isAuthProcessed.current = true;
   }, [navigate, login]);
 
-  return <p>Authenticating...</p>; // Show a simple message while redirecting
+  return <p>Authenticating...</p>;
 };
 
 export default AuthCallback;
