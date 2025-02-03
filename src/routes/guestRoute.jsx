@@ -3,7 +3,7 @@ import { useEffect } from "react";
 import { useLocation } from "react-router-dom";
 
 const GuestRoute = ({ children }) => {
-  const authToken = localStorage.getItem("access_token");
+  const authToken = localStorage.getItem("authToken");
   const location = useLocation();
 
   // List of restricted pages when authenticated
