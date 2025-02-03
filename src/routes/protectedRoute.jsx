@@ -1,8 +1,9 @@
+/* eslint-disable react/prop-types */
 import React from "react";
-import { Navigate, Outlet } from "react-router-dom";
+import { Navigate } from "react-router-dom";
 import { useAuth } from "../context/authContext"; // Ensure correct path
 
-const ProtectedRoute = () => {
+const ProtectedRoute = ({ children }) => {
   const { isAuthenticated, loading } = useAuth();
 
   if (loading)
@@ -19,7 +20,7 @@ const ProtectedRoute = () => {
       </p>
     ); // Prevent redirect loops while checking auth state
 
-  return isAuthenticated() ? <Outlet /> : <Navigate to="/auth" replace />;
+  return isAuthenticated() ? children : <Navigate to="/auth" replace />;
 };
 
 export default ProtectedRoute;
