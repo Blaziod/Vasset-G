@@ -54,9 +54,9 @@ function App() {
         <Route
           path="/wallet"
           element={
-            <ProtectedRoute>
-              <Wallet />
-            </ProtectedRoute>
+            // <ProtectedRoute>
+            <Wallet />
+            // </ProtectedRoute>
           }
         />
 
