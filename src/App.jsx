@@ -47,7 +47,7 @@ function App() {
           path="/dashboard"
           element={
             <ProtectedRoute>
-              <Dashboard />{" "}
+              <Dashboard />
             </ProtectedRoute>
           }
         />
@@ -55,8 +55,7 @@ function App() {
           path="/wallet"
           element={
             <ProtectedRoute>
-              {" "}
-              <Wallet />{" "}
+              <Wallet />
             </ProtectedRoute>
           }
         />
