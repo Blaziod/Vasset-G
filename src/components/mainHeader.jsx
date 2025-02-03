@@ -393,7 +393,7 @@ const MainHeader = () => {
                   fontSize: "14px",
                   fontWeight: "500",
                 }}
-                onClick={() => handleClick("/auth")}
+                onClick={() => handleClick("/wallet")}
               >
                 Wallet
               </h1>

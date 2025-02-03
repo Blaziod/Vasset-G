@@ -5,7 +5,7 @@ import AuthPage from "./pages/AuthPage";
 import Dashboard from "./pages/Dashboard";
 import Wallet from "./pages/wallet";
 import VerifyPage from "./pages/VerifyPage";
-// import ProtectedRoute from "./routes/protectedRoute";
+import ProtectedRoute from "./routes/protectedRoute";
 import GuestRoute from "./routes/guestRoute";
 import Layout from "./components/layout";
 import { ToastContainer } from "react-toastify";
@@ -43,8 +43,23 @@ function App() {
           }
         />
 
-        <Route path="/dashboard" element={<Dashboard />} />
-        <Route path="/wallet" element={<Wallet />} />
+        <Route
+          path="/dashboard"
+          element={
+            <ProtectedRoute>
+              <Dashboard />{" "}
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/wallet"
+          element={
+            <ProtectedRoute>
+              {" "}
+              <Wallet />{" "}
+            </ProtectedRoute>
+          }
+        />
 
         <Route path="/" element={<HomePage />} />
         <Route path="*" element={<Navigate to="/" />} />
