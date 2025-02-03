@@ -9,12 +9,14 @@ export const AuthProvider = ({ children }) => {
   };
 
   const [auth, setAuth] = useState(null);
+  const [loading, setLoading] = useState(true); // Add loading state
 
   useEffect(() => {
     const token = localStorage.getItem("authToken");
     if (token) {
       setAuth({ token });
     }
+    setLoading(false); // Authentication check complete
   }, []);
 
   const login = (token) => {
@@ -23,16 +25,16 @@ export const AuthProvider = ({ children }) => {
   };
 
   const logout = () => {
-    console.log("Logging out...");
     localStorage.removeItem("authToken");
-    setAuth(null); // Clear auth state
-    console.log("Auth state cleared.");
+    setAuth(null);
   };
 
   const isAuthenticated = () => !!auth;
 
   return (
-    <AuthContext.Provider value={{ auth, login, logout, isAuthenticated }}>
+    <AuthContext.Provider
+      value={{ auth, login, logout, isAuthenticated, loading }}
+    >
       {children}
     </AuthContext.Provider>
   );
