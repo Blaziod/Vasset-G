@@ -1,23 +1,25 @@
 import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
 
-// https://vite.dev/config/
 export default defineConfig({
   plugins: [react()],
   server: {
-    port: 3000, // You can specify the development server port here
+    port: 3000,
+    cors: {
+      origin: "https://vassetapp.com",
+      methods: ["GET", "POST", "PUT", "DELETE", "PATCH"], // Allow only needed methods
+      credentials: true, // Allow cookies/auth headers if needed
+    },
   },
   build: {
-    outDir: "dist", // Specify the output directory
+    outDir: "dist",
   },
-  // Handle SPA fallback for React Router
   resolve: {
-    alias: {}, // Add any path aliases if needed
+    alias: {},
   },
   preview: {
-    port: 5000, // Port for the preview server
+    port: 5000,
   },
-  // Ensure Vite handles fallback to index.html
   optimizeDeps: {
     include: [],
   },
