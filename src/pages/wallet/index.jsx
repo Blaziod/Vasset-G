@@ -9,7 +9,7 @@ const Wallet = () => {
   const [isSmallScreen, setIsSmallScreen] = useState(window.innerWidth <= 768);
   const [activeCoin, setActiveCoin] = useState(null);
   const [currentPage, setCurrentPage] = useState(1);
-  const coinsPerPage = 9;
+  const coinsPerPage = 5;
   const handleSelectCoin = (coin) => {
     setActiveCoin(coin.name);
   };
